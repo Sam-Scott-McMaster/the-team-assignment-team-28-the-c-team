@@ -1,2 +1,2 @@
-GUI: SpendFlow.c GUI.c GUI.h GUI_inputs.c GUI_inputs.h
-	gcc SpendFlow.c -o SpendFlow GUI.c GUI_inputs.c
+addUser: addUser.c addUser.h checkUser.c checkUser.h 
+	gcc -o addUser addUser.c checkUser.c
