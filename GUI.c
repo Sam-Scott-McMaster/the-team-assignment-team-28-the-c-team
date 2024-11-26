@@ -23,9 +23,18 @@ void welcome() {
 }
 
 void homePage() {
-    makeBase();
+    makeTop();
     makeSides(4);
-    printText("Hello13");
+    printText("Hello, ______");
+    makeSides(2);
+    printText("Your current balance is:");
+    printText("$___,____,___.__");
+    makeSides(3);
+    printText("TYPE 1 FOR TRANSACTIONS");
+    makeSides(1);
+    printText("TYPE 2 FOR BUDGETING");
+    makeSides(1);
+    printText("TYPE 3 FOR ")
 }
 
 void makeSides(int h) {
