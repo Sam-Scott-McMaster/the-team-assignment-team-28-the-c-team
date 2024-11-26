@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void addTransaction() {
     printf("Enter transaction date (YYYY-MM-DD): ");
     char date[11];
