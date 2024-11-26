@@ -6,12 +6,26 @@
 #define HEIGHT 20
 #define WIDTH 41
 
-void homePage() {
-    makeLine(WIDTH);
+void welcome() {
+    printf("\n\n");
+    makeTop();
     makeSides(4);
-    printText("Hello", WIDTH-2);
-    
+    printText("WELCOME!");
+    printText("SELECT OPTION BELOW:");
+    makeSides(2);
+    printText("TYPE 1 FOR SIGN-IN");
+    makeSides(2);
+    printText("TYPE 2 FOR SIGN-UP");
+    makeSides(2);
+    printText("TYPE 3 TO QUIT");
+    makeSides(4);
+    makeBase();
+}
 
+void homePage() {
+    makeBase();
+    makeSides(4);
+    printText("Hello13");
 }
 
 void makeSides(int h) {
@@ -20,19 +34,27 @@ void makeSides(int h) {
     }
 }
 
-void makeLine(int w) {
-    for (int i = 0; i < w; i++) {
+void makeTop() {
+    for (int i = 0; i < WIDTH; i++) {
         printf("_");
     }
     printf("\n");
 }
 
-void printText(char* text, int width) {
+void makeBase() {
+    printf("|");
+    for (int i = 0; i < WIDTH-2; i++) {
+        printf("_");
+    }
+    printf("|\n");
+}
+
+void printText(char* text) {
+    int width = WIDTH-2;
     int textLen = strlen(text);
     int padding = (width - textLen) / 2;
-    padding += (width - textLen) % 2;
 
     printf("|");
-    printf("%*s%-*s", padding, "", textLen + padding, text);
+    printf("%*s%-*s", padding, "", (width-padding), text);
     printf("|\n");
 }
