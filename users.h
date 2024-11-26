@@ -1,1 +1,2 @@
+void addUser();
 void checkUser();
