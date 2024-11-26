@@ -6,4 +6,9 @@ int checkName(const char *name);
 int checkCost(double cost);
 int checkCategory(const char *category);
 
+char *addDate();
+char *addName();
+double addCost();
+char *addCategory();
+
 #endif
