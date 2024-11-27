@@ -1,8 +1,8 @@
 #include "budget_calculation.h"
-//#include "database.h" // For writeBudget()
+#include "users.h" 
 #include <stdio.h>
 
-void addBudget(const char *user) {
+void addBudget(char *user) {
     double income, limit, savingsPercentage;
 
     // Prompt for income and budget limit

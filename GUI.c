@@ -9,8 +9,9 @@
 void welcome() {
     printf("\n\n");
     makeTop();
-    makeSides(4);
+    makeSides(3);
     printText("WELCOME!");
+    makeSides(1);
     printText("SELECT OPTION BELOW:");
     makeSides(2);
     printText("TYPE 1 FOR SIGN-IN");
@@ -22,13 +23,12 @@ void welcome() {
     makeBase();
 }
 
-void homePage() {
+void homePage(char* user) {
     makeTop();
     makeSides(4);
-    printText("Hello, ______");
-    makeSides(4);
-    //printText("Your current balance is:");
-    //printText("$___,____,___.__");
+    printText("Nice to see you");
+    strcat(user, "!");
+    printText(user);
     makeSides(3);
     printText("TYPE 1 FOR TRANSACTIONS");
     makeSides(1);
@@ -38,6 +38,33 @@ void homePage() {
     makeSides(3);
     makeBase();
 }
+
+void transactionMenu(char* user) {
+    makeTop();
+    makeSides(4);
+    printText("What would you like to do");
+    strcat(user, "?");
+    printText(user);
+    makeSides(2);
+    printText("TYPE 1 TO ADD TRANSACTION");
+    printText("TYPE 2 TO VIEW TRANSACTIONS");
+    makeSides(3);
+    makeBase();
+}
+
+void budgetMenu(char* user) {
+    makeTop();
+    makeSides(4);
+    printText("What would you like to do");
+    strcat(user, "?");
+    printText(user);
+    makeSides(2);
+    printText("TYPE 1 TO ADD BUDGET");
+    printText("TYPE 2 TO VIEW BUDGET");
+    makeSides(3);
+    makeBase();
+}
+
 
 void makeSides(int h) {
     for (int i = 0; i < h; i++) {
