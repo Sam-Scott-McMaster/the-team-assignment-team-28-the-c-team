@@ -20,7 +20,7 @@ jobs:
           path: ./SpendFlow
 
       - name: Build Tests
-        run: gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c test_script
+        run: gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c
 
       - name: Run Tests
         run: ./test_script > test_results.txt
