@@ -28,7 +28,6 @@ void homePage(char* user) {
     makeTop();
     makeSides(4);
     printText("Nice to see you");
-    strcat(user, "!");
     printText(user);
     makeSides(3);
     printText("TYPE 1 FOR TRANSACTIONS");
@@ -44,12 +43,11 @@ void transactionMenu(char* user) {
     makeTop();
     makeSides(4);
     printText("What would you like to do");
-    strcat(user, "?");
     printText(user);
     makeSides(2);
     printText("TYPE 1 TO ADD TRANSACTION");
     makeSides(2);
-    printText("TYPE 2 TO VIEW TRANSACTIONS");
+    //printText("TYPE 2 TO VIEW TRANSACTIONS");
     makeSides(2);
     printText("TYPE 3 TO EXIT");
     makeSides(3);
@@ -60,12 +58,11 @@ void budgetMenu(char* user) {
     makeTop();
     makeSides(4);
     printText("What would you like to do");
-    strcat(user, "?");
     printText(user);
     makeSides(2);
     printText("TYPE 1 TO ADD BUDGET");
     makeSides(2);
-    printText("TYPE 2 TO VIEW BUDGET");
+    //printText("TYPE 2 TO VIEW BUDGET");
     makeSides(2);
     printText("TYPE 3 TO EXIT");
     makeSides(3);

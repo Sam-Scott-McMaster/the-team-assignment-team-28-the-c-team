@@ -39,7 +39,7 @@ void addTransaction(char* userName) {
 
     char transFinal[200];
 
-    snprintf(transFinal, sizeof(transFinal), "%s%s%f%s", date, name, cost, cata);
+    snprintf(transFinal, sizeof(transFinal), "%s %s %.2f %s", date, name, cost, cata);
 
     writeTransaction(userName, transFinal);
 }
