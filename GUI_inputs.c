@@ -55,7 +55,7 @@ void budget(char* user) {
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 4 && input > 0) {
+        if (inputCheck && input < 5 && input > 0) {
             if (input == 1) {
                 addBudget(user);
             }
@@ -64,6 +64,12 @@ void budget(char* user) {
             }
             else if (input == 3) {
                 exit(0);
+            }
+            else if (input == 4) {
+                printf("The writeBudget() function allows users to define a budget for specific spending categories.\n");
+                printf("Users input their target spending limit, and the app tracks their progress.\n");
+                exit(0);
+
             }
         }
         else {
@@ -86,7 +92,7 @@ void transaction(char* user) {
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 4 && input > 0) {
+        if (inputCheck && input < 5 && input > 0) {
             if (input == 1) {
                 addTransaction(user);
             }
@@ -96,6 +102,12 @@ void transaction(char* user) {
                 exit(0);
             }
             else if (input == 3) {
+                exit(0);
+            }
+            else if (input == 4) {
+                printf("The addTransaction() function lets users input details for a new financial transaction.\n");
+                printf("Users specify the date, category (e.g., food, entertainment), amount, and optional notes.\n");
+                printf("This data is automatically saved and categorized, enabling easy tracking.\n\n");
                 exit(0);
             }
         }
@@ -125,6 +137,7 @@ void  loading() {
     printf("\033[2K");
     printf("\n");
 }
+
 void signIn_or_Up(char* user) {
     printf("\n\n");
     int input;
@@ -132,7 +145,7 @@ void signIn_or_Up(char* user) {
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 4 && input > 0 || input == 1738) {
+        if (inputCheck && input < 4 && input > 0 || input == 4) {
             if (input == 1) {
                 loading();
                 checkUser(user);
@@ -146,9 +159,12 @@ void signIn_or_Up(char* user) {
             else if (input == 3) {
                 exit(0);
             }
-            else if (input == 1738) { //Testing code
-                loading();
-                return;
+            else if (input == 4) { //Testing code
+                printf("The signin/up() function allows users to either sign in to their existing SpendFlow account or create a new account.\n");
+                printf("Prompted to enter 1, 2, or 3 to either sign in, sign up, or exit.\n");
+                printf("Signing in retrieves the user’s saved data, including past transactions and budgets.\n");
+                printf("When signing up, users provide a username and basic details, which are stored locally.\n\n");
+                exit(0);
             }
         }
         else {
