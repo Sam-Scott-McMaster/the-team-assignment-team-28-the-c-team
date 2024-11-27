@@ -140,7 +140,7 @@ void addUser(char *signedInUser)
     return;
 }
 
-void writeTransaction(char *signedInUser, char *Transaction)
+void writeTransaction(char* signedInUser, char* Transaction)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
     if (fileOpen == NULL)
