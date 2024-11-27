@@ -170,24 +170,17 @@ void writeTransaction(char *signedInUser, char *Transaction)
 void writeBudget(char *signedInUser, char *Budget)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
+    if (fileOpen == NULL)
+    {
+        printf("Error: Could not open the file.\n");
+        return;
+    }
+
     char charline[1024];
-    int lineNum = 0;
-    int trans = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, signedInUser))
-        {
-            trans = lineNum;
-            break;
-        }
-    }
-
-    while (fgets(charline, sizeof(charline), fileOpen))
-    {
-        lineNum++;
-        if (strstr(charline, "TRANSACTIONS:\n"))
+        if (strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
         {
             break;
         }
@@ -195,13 +188,16 @@ void writeBudget(char *signedInUser, char *Budget)
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, "BUDGET:\n"))
+        if (strncmp(charline, "BUDGET:\n", 8) == 0)
         {
-            fprintf(fileOpen, "%s", Budget);
             break;
         }
     }
+
+    long pos = ftell(fileOpen);
+    fseek(fileOpen, pos, SEEK_SET);
+    fprintf(fileOpen, "%s\n", Budget);
+
     fclose(fileOpen);
 }
 

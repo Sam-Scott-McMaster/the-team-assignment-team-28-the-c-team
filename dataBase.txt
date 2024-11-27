@@ -1,16 +1,8 @@
 
-
-
-Username: Talha
-Password: Talha
+Username: Huzayl
+Password: H
 TRANSACTIONS:
 
 BUDGET:
 
-
-Username: t
-Password: t
-TRANSACTIONS:
-
-BUDGET:
-
+Income: 2000.00 | Limit: 300.00 | Suggested Savings: 85.00%
