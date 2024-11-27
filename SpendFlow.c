@@ -23,13 +23,12 @@ int main(int argc, char* argv[]) {
     }
     int running = 1;
     char currentUser[200] = "";
+    
+    welcome();
+    signIn_or_Up(currentUser);
+    homePage(currentUser);
     while (running) {
-        welcome();
-        signIn_or_Up(currentUser);
-        homePage(currentUser);
-
-
-        running = 0;
+        action(currentUser);
     }
 
     return EXIT_SUCCESS;

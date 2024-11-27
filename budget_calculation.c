@@ -2,7 +2,7 @@
 #include "users.h" 
 #include <stdio.h>
 
-void addBudget(const char *user) {
+void addBudget(char *user) {
     double income, limit, savingsPercentage;
 
     // Prompt for income and budget limit
@@ -26,6 +26,6 @@ void addBudget(const char *user) {
              income, limit, savingsPercentage);
 
     // Save the budget data
-    //writeBudget(user, budget);
+    writeBudget(user, budget);
     printf("Budget added successfully!\n");
 }

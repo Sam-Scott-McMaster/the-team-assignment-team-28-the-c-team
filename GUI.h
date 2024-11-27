@@ -1,5 +1,7 @@
 void welcome();
 void homePage();
+void transactionMenu(char* user);
+void budgetMenu(char* user);
 
 void makeSides(int h);
 
