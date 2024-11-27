@@ -68,13 +68,13 @@ void checkUser(char *signedInUser)
     if (signedIn)
     {
         printf("You are now signed in! Welcome Back %s\n", userName);
+        strcpy(signedInUser, userName);
     }
     else
     {
         printf("Wrong Username or Password\n");
+        exit(0);
     }
-
-    strcpy(signedInUser, userName);
 
     fclose(fileOpen);
     return;
