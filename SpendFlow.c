@@ -6,11 +6,10 @@
 
 int main(int argc, char* argv[]) {
     int running = 1;
-    
+    char currentUser[200] = "";
     while (running) {
-        homePage();
-        //welcome();
-        //signIn_or_Up();
+        welcome();
+        signIn_or_Up(currentUser);
 
 
 
