@@ -1,5 +1,5 @@
+#test
 name: CI - Build and Test SpendFlow Utility
-#testing
 
 on:
   push:
@@ -9,51 +9,53 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Build SpendFlow Executable
-        run: gcc SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c -o SpendFlow
+    - name: Build SpendFlow Executable
+      run: |
+        gcc SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c -o SpendFlow --coverage
 
-      - name: Upload SpendFlow Executable
-        uses: actions/upload-artifact@v4
-        with:
-          name: SpendFlow
-          path: ./SpendFlow
+    - name: Build Tests
+      run: |
+        gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c
 
-      - name: Build Tests
-        run: gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c
+    - name: Run Instrumented Binary
+      run: |
+        ./SpendFlow
 
-      - name: Run Tests
-        run: ./test_script > test_results.txt
+    - name: Run Tests
+      run: |
+        chmod +x test_script
+        ./test_script > test_results.txt
 
-      - name: Generate Coverage Reports
-        run: |
-          gcov SpendFlow.c
-          gcov GUI.c
-          gcov GUI_inputs.c
-          gcov users.c
-          gcov budget_calculation.c
-          gcov transaction_helpers.c
-          gcov sortHistory.c
-          gcov addtransaction.c
+    - name: Generate Coverage Reports
+      run: |
+        gcov -o . SpendFlow.c
+        gcov -o . GUI.c
+        gcov -o . GUI_inputs.c
+        gcov -o . users.c
+        gcov -o . budget_calculation.c
+        gcov -o . transaction_helpers.c
+        gcov -o . sortHistory.c
+        gcov -o . addtransaction.c
 
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: Test Results
-          path: ./test_results.txt
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: Test Results
+        path: ./test_results.txt
 
-      - name: Upload Coverage Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: Coverage Reports
-          path: |
-            SpendFlow.c.gcov
-            GUI.c.gcov
-            GUI_inputs.c.gcov
-            users.c.gcov
-            budget_calculation.c.gcov
-            transaction_helpers.c.gcov
-            sortHistory.c.gcov
-            addtransaction.c.gcov
-
+    - name: Upload Coverage Reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: Coverage Reports
+        path: |
+          SpendFlow.c.gcov
+          GUI.c.gcov
+          GUI_inputs.c.gcov
+          users.c.gcov
+          budget_calculation.c.gcov
+          transaction_helpers.c.gcov
+          sortHistory.c.gcov
+          addtransaction.c.gcov
