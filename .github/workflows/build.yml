@@ -1,4 +1,4 @@
-name: CI - Build and Test Convert Utility
+name: CI - Build and Test SpendFlow Utility
 
 on:
   push:
@@ -10,51 +10,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build and Upload Convert Executable
-        run: gcc SpendFlow.c -o SpendFlow GUI.c GUI_inputs.c users.c budget_calculation.c transation_helpers.c sortHistory.c addTransaction.c
-      
-      - name: Upload Convert Executable
+      - name: Build SpendFlow Executable
+        run: gcc SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c -o SpendFlow
+
+      - name: Upload SpendFlow Executable
         uses: actions/upload-artifact@v4
         with:
-          name: convert
-          path: ./convert
+          name: SpendFlow
+          path: ./SpendFlow
 
-      - name: Build
-        run: gcc -o ctest --coverage convert.c cmdReader.c usage.c converter.c
+      - name: Build Tests
+        run: gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c test_script
 
-      - name: test
+      - name: Run Tests
         run: ./test_script > test_results.txt
 
-      - name: gcov
-        run: gcov ctest-convert.c; gcov ctest-cmdReader.c; gcov ctest-converter.c; gcov ctest-usage.c
+      - name: Generate Coverage Reports
+        run: |
+          gcov SpendFlow.c
+          gcov GUI.c
+          gcov GUI_inputs.c
+          gcov users.c
+          gcov budget_calculation.c
+          gcov transaction_helpers.c
+          gcov sortHistory.c
+          gcov addtransaction.c
 
-        
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
           name: Test Results
           path: ./test_results.txt
 
-      - name: Upload Convert Report
+      - name: Upload Coverage Reports
         uses: actions/upload-artifact@v4
         with:
-          name: Convert Report
-          path: convert.c.gcov 
-          
-      - name: Upload cmdReader Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: cmdReader report
-          path: cmdReader.c.gcov 
+          name: Coverage Reports
+          path: |
+            SpendFlow.c.gcov
+            GUI.c.gcov
+            GUI_inputs.c.gcov
+            users.c.gcov
+            budget_calculation.c.gcov
+            transaction_helpers.c.gcov
+            sortHistory.c.gcov
+            addtransaction.c.gcov
 
-      - name: Upload converter Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: converter report
-          path: converter.c.gcov
-
-      - name: Upload usage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: usage report
-          path: usage.c.gcov 
