@@ -3,14 +3,13 @@
 #include <string.h>
 #include <stdbool.h>
 
-void checkUser(char* signedInUser)
+void checkUser(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
 
     if (fileOpen == NULL)
     {
-        printf("Error Occurred While creating a "
-               "file !");
+        printf("Error occurred while opening the file!\n");
         exit(1);
     }
 
@@ -20,21 +19,21 @@ void checkUser(char* signedInUser)
     int passLine;
     bool presentUser = false;
     bool signedIn = false;
-    int lineNum;
-    lineNum = 0;
+    int lineNum = 0;
 
+    // Get the username
     printf("Enter User Name: ");
     scanf("%199s", userName);
-
-    char prompt[250];
-
-    snprintf(prompt, sizeof(prompt), "Username: %s", userName);
+    strtok(userName, "\n");
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
         lineNum++;
         if (strncmp(charline, "Username: ", 10) == 0)
         {
+            charline[strcspn(charline, "\n")] = '\0';
+
+            // Compare without the newline
             if (strcmp(charline + 10, userName) == 0)
             {
                 presentUser = true;
@@ -51,12 +50,15 @@ void checkUser(char* signedInUser)
         strtok(password, "\n");
 
         fseek(fileOpen, 0, SEEK_SET);
+
         lineNum = 0;
         while (fgets(charline, sizeof(charline), fileOpen))
         {
             lineNum++;
             if (lineNum == passLine && strncmp(charline, "Password: ", 10) == 0)
             {
+                charline[strcspn(charline, "\n")] = '\0';
+
                 if (strcmp(charline + 10, password) == 0)
                 {
                     signedIn = true;
@@ -65,7 +67,6 @@ void checkUser(char* signedInUser)
             }
         }
     }
-
     if (signedIn)
     {
         printf("You are now signed in! Welcome Back %s\n", userName);
@@ -76,6 +77,7 @@ void checkUser(char* signedInUser)
     }
 
     strcpy(signedInUser, userName);
+
     fclose(fileOpen);
     return;
 }
@@ -98,15 +100,19 @@ void addUser()
     int lineNum;
     while (1)
     {
+        presentUser = false;
         lineNum = 0;
-        printf("Enter User Name:");
-        scanf("%s", userName);
+        printf("Enter User Name: ");
+        scanf("%199s", userName);
+
+        rewind(fileOpen);
 
         while (fgets(charline, sizeof(charline), fileOpen))
         {
             lineNum++;
             if (strncmp(charline, "Username: ", 10) == 0)
             {
+                charline[strcspn(charline, "\n")] = '\0';
                 if (strcmp(charline + 10, userName) == 0)
                 {
                     printf("\nUser Name already exists, please try again.\n");
@@ -121,7 +127,7 @@ void addUser()
         }
     }
 
-    printf("\nEnter Password:");
+    printf("\nEnter Password: ");
     scanf("%s", password);
     fseek(fileOpen, 0, SEEK_END);
 
