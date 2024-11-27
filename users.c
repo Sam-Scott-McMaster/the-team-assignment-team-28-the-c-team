@@ -143,13 +143,17 @@ void addUser(char *signedInUser)
 void writeTransaction(char *signedInUser, char *Transaction)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
+    if (fileOpen == NULL)
+    {
+        printf("Error: Could not open the file.\n");
+        return;
+    }
+
     char charline[1024];
-    int lineNum = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, signedInUser))
+        if (strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
         {
             break;
         }
@@ -157,13 +161,20 @@ void writeTransaction(char *signedInUser, char *Transaction)
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, "TRANSACTIONS:\n"))
+        if (strncmp(charline, "TRANSACTIONS:\n", 14) == 0)
         {
-            fprintf(fileOpen, "%s", Transaction);
+            break;
+        }
+        if (strncmp(charline, "Username: ", 10) == 0)
+        {
             break;
         }
     }
+
+    fseek(fileOpen, 0, SEEK_CUR);
+    fprintf(fileOpen, "%s\n", Transaction);
+
+    printf("Transaction added successfully for user '%s'.\n", signedInUser);
     fclose(fileOpen);
 }
 
@@ -206,12 +217,10 @@ char *allTrans(char *signedInUser)
     FILE *fileOpen = fopen("dataBase.txt", "r+");
     FILE *transOpen = fopen("userTrans.txt", "w+");
     char charline[1024];
-    int lineNum = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, signedInUser))
+        if (strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
         {
             break;
         }
@@ -219,8 +228,7 @@ char *allTrans(char *signedInUser)
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, "TRANSACTIONS:\n"))
+        if (strncmp(charline, "TRANSACTIONS:\n", 14) == 0)
         {
             break;
         }
@@ -228,8 +236,7 @@ char *allTrans(char *signedInUser)
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        lineNum++;
-        if (strstr(charline, "BUDGET:\n"))
+        if (strncmp(charline, "BUDGET:\n", 8) == 0 || strncmp(charline, "Username: ", 10) == 0)
         {
             break;
         }
