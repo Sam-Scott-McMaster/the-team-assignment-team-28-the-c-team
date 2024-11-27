@@ -61,12 +61,13 @@ double addCost() {
 }
 
 //function for category validation
-int checkCategory(const char *category) {
+int checkCategory(int category, char *cata) {
     const char *categories[] = {"Food", "Entertainment", "Bills", "Travel", "Others"};
     int valid = 0;
 
     for (int i = 0; i < 5; ++i) {
         if (strcmp(category, categories[i]) == 0) {
+            cata = categories[i];
             valid = 1;
             break;
         }
@@ -78,7 +79,7 @@ int checkCategory(const char *category) {
     return valid;
 }
 
-//validates a category
+/*validates a category
 char *addCategory() {
     char *category = malloc(50 * sizeof(char));
     do {
@@ -87,3 +88,4 @@ char *addCategory() {
     } while (!checkCategory(category));
     return category;
 }
+*/
