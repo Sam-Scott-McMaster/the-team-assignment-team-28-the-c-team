@@ -135,7 +135,7 @@ void addUser()
     return;
 }
 
-void writeTransaction(char *signedInUser, char Transaction)
+void writeTransaction(char *signedInUser, char *Transaction)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
     char charline[1024];
@@ -164,7 +164,7 @@ void writeTransaction(char *signedInUser, char Transaction)
     fclose(fileOpen);
 }
 
-void writeBudget(char *signedInUser, char Budget)
+void writeBudget(char *signedInUser, char *Budget)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
     char charline[1024];
