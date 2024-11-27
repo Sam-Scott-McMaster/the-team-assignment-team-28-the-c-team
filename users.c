@@ -150,32 +150,52 @@ void writeTransaction(char *signedInUser, char *Transaction)
     }
 
     char charline[1024];
+    char buffer[10000] = ""; // Large enough to store the file content temporarily
+    int foundUser = 0, foundTransactions = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        if (strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
+        strcat(buffer, charline);
+
+        // Check for the user
+        if (!foundUser && strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
         {
-            break;
+            foundUser = 1;
+        }
+
+        // Locate TRANSACTIONS section under the correct user
+        if (foundUser && strncmp(charline, "TRANSACTIONS:\n", 14) == 0)
+        {
+            strcat(buffer, Transaction);
+            strcat(buffer, "\n");
+            foundTransactions = 1;
         }
     }
 
-    while (fgets(charline, sizeof(charline), fileOpen))
+    fclose(fileOpen);
+
+    if (!foundUser)
     {
-        if (strncmp(charline, "TRANSACTIONS:\n", 14) == 0)
-        {
-            break;
-        }
-        if (strncmp(charline, "Username: ", 10) == 0)
-        {
-            break;
-        }
+        printf("Error: User '%s' not found.\n", signedInUser);
+        return;
+    }
+    if (!foundTransactions)
+    {
+        printf("Error: TRANSACTIONS section not found for user '%s'.\n", signedInUser);
+        return;
     }
 
-    fseek(fileOpen, 0, SEEK_CUR);
-    fprintf(fileOpen, "%s\n", Transaction);
+    fileOpen = fopen("dataBase.txt", "w");
+    if (fileOpen == NULL)
+    {
+        printf("Error: Could not reopen the file.\n");
+        return;
+    }
+
+    fputs(buffer, fileOpen);
+    fclose(fileOpen);
 
     printf("Transaction added successfully for user '%s'.\n", signedInUser);
-    fclose(fileOpen);
 }
 
 void writeBudget(char *signedInUser, char *Budget)
