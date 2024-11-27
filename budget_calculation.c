@@ -1,5 +1,5 @@
 #include "budget_calculation.h"
-//#include "database.h" // For writeBudget()
+#include "users.h" 
 #include <stdio.h>
 
 void addBudget(const char *user) {
@@ -26,6 +26,6 @@ void addBudget(const char *user) {
              income, limit, savingsPercentage);
 
     // Save the budget data
-    writeBudget(user, budget);
+    //writeBudget(user, budget);
     printf("Budget added successfully!\n");
 }

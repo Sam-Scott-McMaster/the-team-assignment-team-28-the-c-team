@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-void checkUser(char *signedInUser)
+void checkUser(char* signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
 
@@ -28,8 +28,7 @@ void checkUser(char *signedInUser)
 
     char prompt[250];
 
-    strcpy(prompt, "Username: ");
-    strcat(prompt, userName);
+    snprintf(prompt, sizeof(prompt), "Username: %s", userName);
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
@@ -51,6 +50,7 @@ void checkUser(char *signedInUser)
         scanf("%199s", password);
         strtok(password, "\n");
 
+        fseek(fileOpen, 0, SEEK_SET);
         lineNum = 0;
         while (fgets(charline, sizeof(charline), fileOpen))
         {

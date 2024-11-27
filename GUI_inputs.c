@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
 #include "GUI_inputs.h"
 #include "users.h"
 
@@ -28,13 +29,13 @@ void signIn_or_Up(char* user) {
         if (inputCheck && input < 4 && input > 0 || input == 1738) {
             if (input == 1) {
                 loading();
-                checkUser();
-                exit(0);
+                checkUser(user);
+                return;
             }
             else if (input == 2) {
                 loading();
                 addUser();
-                exit(0);
+                return;
             }
             else if (input == 3) {
                 exit(0);

@@ -25,7 +25,7 @@ void welcome() {
 void homePage() {
     makeTop();
     makeSides(4);
-    printText("Hello, ______");
+    printText("Hello");
     makeSides(4);
     //printText("Your current balance is:");
     //printText("$___,____,___.__");
