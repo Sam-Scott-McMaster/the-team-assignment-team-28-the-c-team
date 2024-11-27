@@ -140,14 +140,12 @@ void writeTransaction(char *signedInUser, char *Transaction)
     FILE *fileOpen = fopen("dataBase.txt", "r+");
     char charline[1024];
     int lineNum = 0;
-    int trans = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
         lineNum++;
         if (strstr(charline, signedInUser))
         {
-            trans = lineNum;
             break;
         }
     }
@@ -205,17 +203,15 @@ void writeBudget(char *signedInUser, char *Budget)
 char *allTrans(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
-    FILE *transOpen = fopen("userTrans.txt", "r+");
+    FILE *transOpen = fopen("userTrans.txt", "w+");
     char charline[1024];
     int lineNum = 0;
-    int trans = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
         lineNum++;
         if (strstr(charline, signedInUser))
         {
-            trans = lineNum;
             break;
         }
     }
@@ -247,7 +243,7 @@ char *allTrans(char *signedInUser)
 char *allBud(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
-    FILE *budOpen = fopen("userBud.txt", "r+");
+    FILE *budOpen = fopen("userBud.txt", "w+");
     char charline[1024];
     int lineNum = 0;
     int trans = 0;
@@ -291,4 +287,6 @@ char *allBud(char *signedInUser)
     }
     fclose(fileOpen);
     fclose(budOpen);
+
+    return "userBud.txt";
 }
