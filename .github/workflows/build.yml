@@ -1,0 +1,60 @@
+name: CI - Build and Test Convert Utility
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and Upload Convert Executable
+        run: gcc -o convert convert.c cmdReader.c usage.c converter.c
+      
+      - name: Upload Convert Executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: convert
+          path: ./convert
+
+      - name: Build
+        run: gcc -o ctest --coverage convert.c cmdReader.c usage.c converter.c
+
+      - name: test
+        run: ./test_script > test_results.txt
+
+      - name: gcov
+        run: gcov ctest-convert.c; gcov ctest-cmdReader.c; gcov ctest-converter.c; gcov ctest-usage.c
+
+        
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test Results
+          path: ./test_results.txt
+
+      - name: Upload Convert Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Convert Report
+          path: convert.c.gcov 
+          
+      - name: Upload cmdReader Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdReader report
+          path: cmdReader.c.gcov 
+
+      - name: Upload converter Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: converter report
+          path: converter.c.gcov
+
+      - name: Upload usage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: usage report
+          path: usage.c.gcov 
