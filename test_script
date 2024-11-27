@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 # A simple framework for regression testing the convert (ctest) script
 #
 # Returns the number of failed test cases.
