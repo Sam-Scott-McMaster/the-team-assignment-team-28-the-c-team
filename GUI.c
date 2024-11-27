@@ -24,6 +24,7 @@ void welcome() {
 }
 
 void homePage(char* user) {
+    printf("\n\n");
     makeTop();
     makeSides(4);
     printText("Nice to see you");
@@ -67,7 +68,7 @@ void budgetMenu(char* user) {
 
 
 void makeSides(int h) {
-    for (int i = 0; i < h; i++) {
+    for (int i = 0; i <= h; i++) {
         printf("|%*s", WIDTH, "|\n");
     }
 }

@@ -128,7 +128,7 @@ void signIn_or_Up(char* user) {
             }
             else if (input == 2) {
                 loading();
-                addUser();
+                addUser(user);
                 return;
             }
             else if (input == 3) {
