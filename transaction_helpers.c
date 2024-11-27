@@ -65,14 +65,10 @@ int checkCategory(int category, char *cata) {
     const char *categories[] = {"Food", "Entertainment", "Bills", "Travel", "Others"};
     int valid = 0;
 
-    for (int i = 0; i < 5; ++i) {
-        if (strcmp(category, categories[i]) == 0) {
-            cata = categories[i];
-            valid = 1;
-            break;
-        }
+    if (category > 0 && category < 5) {
+        strcat(cata, categories[category-1]);
+        valid = 1;
     }
-
     if (!valid) {
         printf("Error: Invalid category. Choose from: Food, Entertainment, Bills, Travel, Others.\n");
     }
