@@ -28,4 +28,5 @@ void addBudget(char *user) {
     // Save the budget data
     writeBudget(user, budget);
     printf("Budget added successfully!\n");
+    return;
 }

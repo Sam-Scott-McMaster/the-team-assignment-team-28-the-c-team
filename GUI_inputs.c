@@ -58,12 +58,9 @@ void budget(char* user) {
         if (inputCheck && input < 4 && input > 0) {
             if (input == 1) {
                 addBudget(user);
-                return;
             }
             else if (input == 2) {
-                loading();
-                exit(0);
-                return;
+                viewBudget(user);
             }
             else if (input == 3) {
                 exit(0);
@@ -75,6 +72,10 @@ void budget(char* user) {
             printf("Invalid input, try again: ");
             while ((c = getchar()) != '\n' && c != EOF) { }
         }
+        
+        while ((c = getchar()) != '\n' && c != EOF) { }
+        budgetMenu(user);
+
     }
 }
 
@@ -88,7 +89,6 @@ void transaction(char* user) {
         if (inputCheck && input < 4 && input > 0) {
             if (input == 1) {
                 addTransaction(user);
-                return;
             }
             else if (input == 2) {
                 printf("sort history");
@@ -105,6 +105,10 @@ void transaction(char* user) {
             printf("Invalid input, try again: ");
             while ((c = getchar()) != '\n' && c != EOF) { }
         }
+
+        while ((c = getchar()) != '\n' && c != EOF) { }
+       transactionMenu(user);
+
     }
 }
 
@@ -116,7 +120,7 @@ void  loading() {
             printf("█████");
         }
         fflush(stdout);
-        usleep(180000);
+        usleep(50000);
     }
     printf("\033[2K");
     printf("\n");
@@ -154,4 +158,16 @@ void signIn_or_Up(char* user) {
             while ((c = getchar()) != '\n' && c != EOF) { }
         }
     }
+}
+
+void viewBudget(char* user) {
+    FILE *fileOpen = fopen(allBud(user), "r+");
+
+    char line[1024];
+    while (fgets(line, sizeof(line), fileOpen)) {
+        printf("%s", line);
+    }
+
+    fclose(fileOpen);
+    return;
 }
