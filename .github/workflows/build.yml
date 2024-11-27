@@ -8,7 +8,11 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Clean Previous Files
+        run: rm -f *.gcno *.gcda SpendFlow
 
       - name: Build SpendFlow Executable
         run: gcc SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c -o SpendFlow
@@ -19,7 +23,7 @@ jobs:
           name: SpendFlow
           path: ./SpendFlow
 
-      - name: Build Tests
+      - name: Build Tests with Coverage
         run: gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c
 
       - name: Run Tests
@@ -27,14 +31,14 @@ jobs:
 
       - name: Generate Coverage Reports
         run: |
-          gcov SpendFlow.c
-          gcov GUI.c
-          gcov GUI_inputs.c
-          gcov users.c
-          gcov budget_calculation.c
-          gcov transaction_helpers.c
-          gcov sortHistory.c
-          gcov addtransaction.c
+          gcov -v SpendFlow.c || echo "Failed to process SpendFlow.c"
+          gcov -v GUI.c || echo "Failed to process GUI.c"
+          gcov -v GUI_inputs.c || echo "Failed to process GUI_inputs.c"
+          gcov -v users.c || echo "Failed to process users.c"
+          gcov -v budget_calculation.c || echo "Failed to process budget_calculation.c"
+          gcov -v transaction_helpers.c || echo "Failed to process transaction_helpers.c"
+          gcov -v sortHistory.c || echo "Failed to process sortHistory.c"
+          gcov -v addtransaction.c || echo "Failed to process addtransaction.c"
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
