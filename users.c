@@ -82,7 +82,7 @@ void checkUser(char *signedInUser)
     return;
 }
 
-void addUser()
+void addUser(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
 
@@ -138,6 +138,7 @@ void addUser()
 
     printf("\nAccount Creation Successful!\n");
     fclose(fileOpen);
+    strcpy(signedInUser, userName);
     return;
 }
 
