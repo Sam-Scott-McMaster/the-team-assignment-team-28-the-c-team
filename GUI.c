@@ -48,7 +48,10 @@ void transactionMenu(char* user) {
     printText(user);
     makeSides(2);
     printText("TYPE 1 TO ADD TRANSACTION");
+    makeSides(2);
     printText("TYPE 2 TO VIEW TRANSACTIONS");
+    makeSides(2);
+    printText("TYPE 3 TO EXIT");
     makeSides(3);
     makeBase();
 }
@@ -61,14 +64,17 @@ void budgetMenu(char* user) {
     printText(user);
     makeSides(2);
     printText("TYPE 1 TO ADD BUDGET");
+    makeSides(2);
     printText("TYPE 2 TO VIEW BUDGET");
+    makeSides(2);
+    printText("TYPE 3 TO EXIT");
     makeSides(3);
     makeBase();
 }
 
 
 void makeSides(int h) {
-    for (int i = 0; i <= h; i++) {
+    for (int i = 0; i < h; i++) {
         printf("|%*s", WIDTH, "|\n");
     }
 }

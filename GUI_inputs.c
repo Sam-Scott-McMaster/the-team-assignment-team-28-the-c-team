@@ -8,6 +8,7 @@
 #include "users.h"
 #include "budget_calculation.h"
 #include "transaction_helpers.h"
+#include "sortHistory.h"
 
 void action(char* user) {
     printf("\n\n");
@@ -54,7 +55,7 @@ void budget(char* user) {
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 3 && input > 0) {
+        if (inputCheck && input < 4 && input > 0) {
             if (input == 1) {
                 addBudget(user);
                 return;
@@ -63,6 +64,9 @@ void budget(char* user) {
                 loading();
                 exit(0);
                 return;
+            }
+            else if (input == 3) {
+                exit(0);
             }
         }
         else {
@@ -81,13 +85,17 @@ void transaction(char* user) {
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 3 && input > 0) {
+        if (inputCheck && input < 4 && input > 0) {
             if (input == 1) {
                 addTransaction(user);
                 return;
             }
             else if (input == 2) {
-                loading();
+                printf("sort history");
+                //sortHistory();
+                exit(0);
+            }
+            else if (input == 3) {
                 exit(0);
             }
         }
