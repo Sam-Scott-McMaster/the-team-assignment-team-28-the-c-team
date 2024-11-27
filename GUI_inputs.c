@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "GUI_inputs.h"
+#include "users.h"
 
 void  loading() {
     for (int i = 1; i < 11; i++) {
@@ -12,32 +13,35 @@ void  loading() {
             printf("█████");
         }
         fflush(stdout);
-        usleep(500000);
+        usleep(180000);
     }
     printf("\033[2K");
+    printf("\n");
 }
-void signIn_or_Up() {
+void signIn_or_Up(char* user) {
     printf("\n\n");
     int input;
     int inputCheck;
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 4 && input > 0) {
+        if (inputCheck && input < 4 && input > 0 || input == 1738) {
             if (input == 1) {
-                //checkUser()
                 loading();
-                printf("\nSign-in\n");
+                checkUser();
                 exit(0);
             }
             else if (input == 2) {
-                //addUser()
                 loading();
-                printf("Sign-up");
+                addUser();
                 exit(0);
             }
             else if (input == 3) {
                 exit(0);
+            }
+            else if (input == 1738) {
+                loading();
+                return;
             }
         }
         else {

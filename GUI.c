@@ -26,15 +26,17 @@ void homePage() {
     makeTop();
     makeSides(4);
     printText("Hello, ______");
-    makeSides(2);
-    printText("Your current balance is:");
-    printText("$___,____,___.__");
+    makeSides(4);
+    //printText("Your current balance is:");
+    //printText("$___,____,___.__");
     makeSides(3);
     printText("TYPE 1 FOR TRANSACTIONS");
     makeSides(1);
     printText("TYPE 2 FOR BUDGETING");
     makeSides(1);
-    printText("TYPE 3 FOR ")
+    printText("TYPE 3 TO EXIT");
+    makeSides(3);
+    makeBase();
 }
 
 void makeSides(int h) {

@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
     while (running) {
         welcome();
         signIn_or_Up(currentUser);
-
+        homePage();
 
 
         running = 0;
