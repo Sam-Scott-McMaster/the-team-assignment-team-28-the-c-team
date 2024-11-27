@@ -21,7 +21,6 @@ void checkUser(char *signedInUser)
     bool signedIn = false;
     int lineNum = 0;
 
-    // Get the username
     printf("Enter User Name: ");
     scanf("%199s", userName);
     strtok(userName, "\n");
@@ -33,7 +32,6 @@ void checkUser(char *signedInUser)
         {
             charline[strcspn(charline, "\n")] = '\0';
 
-            // Compare without the newline
             if (strcmp(charline + 10, userName) == 0)
             {
                 presentUser = true;
@@ -102,7 +100,7 @@ void addUser(char *signedInUser)
     {
         presentUser = false;
         lineNum = 0;
-        printf("Enter User Name: ");
+        printf("Enter User Name(One word): ");
         scanf("%199s", userName);
 
         rewind(fileOpen);
@@ -127,7 +125,7 @@ void addUser(char *signedInUser)
         }
     }
 
-    printf("\nEnter Password: ");
+    printf("\nEnter Password(One word): ");
     scanf("%s", password);
     fseek(fileOpen, 0, SEEK_END);
 
