@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 Username: Huzayl
 Password: H
@@ -7,15 +5,3 @@ TRANSACTIONS:
 
 BUDGET:
 
-<<<<<<< HEAD
-Income: 2000.00 | Limit: 300.00 | Suggested Savings: 85.00%
-=======
-
-Username: 1
-Password: 1
-TRANSACTIONS:
-
-BUDGET:
-
->>>>>>> 2ae1353e1f93b71d237d5e6f853f30214fae0475
->>>>>>> c3250b99beba28d6445076a86a4fc643310a7229
