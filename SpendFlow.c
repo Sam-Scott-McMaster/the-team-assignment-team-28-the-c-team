@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
     homePage(currentUser);
     while (running) {
         action(currentUser);
+        //Test
     }
 
     return EXIT_SUCCESS;
