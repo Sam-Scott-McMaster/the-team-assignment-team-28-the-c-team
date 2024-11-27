@@ -24,7 +24,7 @@ void checkUser(char *signedInUser)
     lineNum = 0;
 
     printf("Enter User Name: ");
-    scanf("%s", userName);
+    scanf("%199s", userName);
 
     char prompt[250];
 
@@ -34,29 +34,35 @@ void checkUser(char *signedInUser)
     while (fgets(charline, sizeof(charline), fileOpen))
     {
         lineNum++;
-        if (strstr(charline, prompt))
+        if (strncmp(charline, "Username: ", 10) == 0)
         {
-            presentUser = true;
-            passLine = lineNum + 1;
-            break;
+            if (strcmp(charline + 10, userName) == 0)
+            {
+                presentUser = true;
+                passLine = lineNum + 1;
+                break;
+            }
         }
     }
 
-    printf("\n Enter Password: ");
-    scanf("%s", password);
-
-    prompt[0] = '\0';
-
-    strcpy(prompt, "Password: ");
-    strcat(prompt, password);
-
-    lineNum = 0;
-    while (fgets(charline, sizeof(charline), fileOpen))
+    if (presentUser)
     {
-        lineNum++;
-        if ((lineNum == passLine) && (strstr(charline, prompt)))
+        printf("\nEnter Password: ");
+        scanf("%199s", password);
+        strtok(password, "\n");
+
+        lineNum = 0;
+        while (fgets(charline, sizeof(charline), fileOpen))
         {
-            signedIn = true;
+            lineNum++;
+            if (lineNum == passLine && strncmp(charline, "Password: ", 10) == 0)
+            {
+                if (strcmp(charline + 10, password) == 0)
+                {
+                    signedIn = true;
+                    break;
+                }
+            }
         }
     }
 
@@ -70,7 +76,7 @@ void checkUser(char *signedInUser)
     }
 
     strcpy(signedInUser, userName);
-    close(fileOpen);
+    fclose(fileOpen);
     return;
 }
 
@@ -99,11 +105,14 @@ void addUser()
         while (fgets(charline, sizeof(charline), fileOpen))
         {
             lineNum++;
-            if (strstr(charline, userName))
+            if (strncmp(charline, "Username: ", 10) == 0)
             {
-                printf("\n User Name already exits, please try again \n");
-                presentUser = true;
-                break;
+                if (strcmp(charline + 10, userName) == 0)
+                {
+                    printf("\nUser Name already exists, please try again.\n");
+                    presentUser = true;
+                    break;
+                }
             }
         }
         if (!presentUser)
@@ -116,17 +125,13 @@ void addUser()
     scanf("%s", password);
     fseek(fileOpen, 0, SEEK_END);
 
-    fprintf(fileOpen, "\nUsername: %s", userName);
-    fprintf(fileOpen, "\nPassword: %s", password);
-
-    fprintf(fileOpen, "\n");
-    fprintf(fileOpen, "TRANSACTIONS:\n");
-
-    fprintf(fileOpen, "\n");
-    fprintf(fileOpen, "BUDGET:\n");
+    fprintf(fileOpen, "\nUsername: %s\n", userName);
+    fprintf(fileOpen, "Password: %s\n", password);
+    fprintf(fileOpen, "TRANSACTIONS:\n\n");
+    fprintf(fileOpen, "BUDGET:\n\n");
 
     printf("\nAccount Creation Successful!\n");
-    close(fileOpen);
+    fclose(fileOpen);
     return;
 }
 
@@ -156,7 +161,7 @@ void writeTransaction(char *signedInUser, char Transaction)
             break;
         }
     }
-    close(fileOpen);
+    fclose(fileOpen);
 }
 
 void writeBudget(char *signedInUser, char Budget)
@@ -194,7 +199,7 @@ void writeBudget(char *signedInUser, char Budget)
             break;
         }
     }
-    close(fileOpen);
+    fclose(fileOpen);
 }
 
 char *allTrans(char *signedInUser)
@@ -233,8 +238,8 @@ char *allTrans(char *signedInUser)
         }
         fputs(charline, transOpen);
     }
-    close(fileOpen);
-    close(transOpen);
+    fclose(fileOpen);
+    fclose(transOpen);
 
     return "userTrans.txt";
 }
@@ -284,6 +289,6 @@ char *allBud(char *signedInUser)
         }
         fputs(charline, budOpen);
     }
-    close(fileOpen);
-    close(budOpen);
+    fclose(fileOpen);
+    fclose(budOpen);
 }
