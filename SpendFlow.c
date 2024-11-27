@@ -9,16 +9,17 @@ void help() {
     printf("Users can input financial transactions, categorize them\n");
     printf("(e.g., food, entertainment, bills), and set spending limits for specific categories.\n");
     printf("Options include: --help to display this guide\n");
-    printf("\t\t--add to input a new transaction\n");
-    printf("\t\t--view to see a spending summary\n");
-    printf("\t\t--set-budget to establish category budgets\n");
-    printf("\t\t--exit to quit the app.\n");
+    printf("\t\t   add a new transaction\n");
+    printf("\t\t   view to see all budgets\n");
+    printf("\t\t   set-budget to establish category budgets\n");
+    printf("\t\t   exit to quit the app.\n");
 }
 
 int main(int argc, char* argv[]) {
     if (argc > 1) {
-        if (strcmp(argv[1], "-d") == 0 ) {
+        if (strcmp(argv[1], "--help") == 0 ) {
             help();
+            exit(0);
         }
     }
     int running = 1;

@@ -20,6 +20,7 @@ void welcome() {
     makeSides(2);
     printText("TYPE 3 TO QUIT");
     makeSides(4);
+    printText("TYPE 4 FOR HELP");
     makeBase();
 }
 
@@ -51,6 +52,7 @@ void transactionMenu(char* user) {
     makeSides(2);
     printText("TYPE 3 TO EXIT");
     makeSides(3);
+    printText("TYPE 4 FOR HELP");
     makeBase();
 }
 
@@ -66,6 +68,7 @@ void budgetMenu(char* user) {
     makeSides(2);
     printText("TYPE 3 TO EXIT");
     makeSides(3);
+    printText("TYPE 4 FOR HELP");
     makeBase();
 }
 
