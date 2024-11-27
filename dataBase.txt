@@ -1,0 +1,26 @@
+<<<<<<< HEAD
+=======
+
+
+
+Username: Talha
+Password: Talha
+TRANSACTIONS:
+
+BUDGET:
+
+
+Username: t
+Password: t
+TRANSACTIONS:
+
+BUDGET:
+
+
+Username: 1
+Password: 1
+TRANSACTIONS:
+
+BUDGET:
+
+>>>>>>> 2ae1353e1f93b71d237d5e6f853f30214fae0475
