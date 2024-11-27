@@ -140,9 +140,9 @@ void addUser(char *signedInUser)
     return;
 }
 
-void writeTransaction(char* signedInUser, char* Transaction)
+void writeTransaction(char *signedInUser, char *transaction)
 {
-    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    FILE *fileOpen = fopen("dataBase.txt", "r");
     if (fileOpen == NULL)
     {
         printf("Error: Could not open the file.\n");
@@ -150,36 +150,30 @@ void writeTransaction(char* signedInUser, char* Transaction)
     }
 
     char charline[1024];
-    char buffer[10000] = ""; // Large enough to store the file content temporarily
+    char buffer[10000] = "";
     int foundUser = 0, foundTransactions = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
         strcat(buffer, charline);
 
-        // Check for the user
-        if (!foundUser && strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
+        if (!foundUser && strncmp(charline, "Username: ", 10) == 0 && strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 && charline[10 + strlen(signedInUser)] == '\n')
         {
             foundUser = 1;
         }
 
-        // Locate TRANSACTIONS section under the correct user
         if (foundUser && strncmp(charline, "TRANSACTIONS:\n", 14) == 0)
         {
-            strcat(buffer, Transaction);
-            strcat(buffer, "\n");
             foundTransactions = 1;
+            strcat(buffer, transaction);
+            strcat(buffer, "\n");
+            foundUser = 0;
         }
     }
 
     fclose(fileOpen);
 
-    if (!foundUser)
-    {
-        printf("Error: User '%s' not found.\n", signedInUser);
-        return;
-    }
-    if (!foundTransactions)
+    if (!foundUser && !foundTransactions)
     {
         printf("Error: TRANSACTIONS section not found for user '%s'.\n", signedInUser);
         return;
@@ -188,7 +182,7 @@ void writeTransaction(char* signedInUser, char* Transaction)
     fileOpen = fopen("dataBase.txt", "w");
     if (fileOpen == NULL)
     {
-        printf("Error: Could not reopen the file.\n");
+        printf("Error: Could not reopen the file for writing.\n");
         return;
     }
 
@@ -200,7 +194,7 @@ void writeTransaction(char* signedInUser, char* Transaction)
 
 void writeBudget(char *signedInUser, char *Budget)
 {
-    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    FILE *fileOpen = fopen("dataBase.txt", "r");
     if (fileOpen == NULL)
     {
         printf("Error: Could not open the file.\n");
@@ -208,28 +202,47 @@ void writeBudget(char *signedInUser, char *Budget)
     }
 
     char charline[1024];
+    char buffer[10000] = "";
+    int foundUser = 0, foundBudget = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-        if (strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
+
+        strcat(buffer, charline);
+
+        if (!foundUser && strncmp(charline, "Username: ", 10) == 0 && strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 && charline[10 + strlen(signedInUser)] == '\n')
         {
-            break;
+            foundUser = 1;
+        }
+
+        if (foundUser && strncmp(charline, "BUDGET:\n", 8) == 0)
+        {
+            strcat(buffer, Budget);
+            strcat(buffer, "\n");
+            foundBudget = 1;
+            foundUser = 0;
         }
     }
-
-    while (fgets(charline, sizeof(charline), fileOpen))
-    {
-        if (strncmp(charline, "BUDGET:\n", 8) == 0)
-        {
-            break;
-        }
-    }
-
-    long pos = ftell(fileOpen);
-    fseek(fileOpen, pos, SEEK_SET);
-    fprintf(fileOpen, "%s\n", Budget);
 
     fclose(fileOpen);
+
+    if (!foundUser && !foundBudget)
+    {
+        printf("Error: BUDGET section not found for user '%s'.\n", signedInUser);
+        return;
+    }
+
+    fileOpen = fopen("dataBase.txt", "w");
+    if (fileOpen == NULL)
+    {
+        printf("Error: Could not reopen the file for writing.\n");
+        return;
+    }
+
+    fputs(buffer, fileOpen);
+    fclose(fileOpen);
+
+    printf("Budget updated successfully for user '%s'.\n", signedInUser);
 }
 
 char *allTrans(char *signedInUser)
