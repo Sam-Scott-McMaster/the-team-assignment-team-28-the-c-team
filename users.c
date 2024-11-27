@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-void checkUser()
+void checkUser(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
 
@@ -23,7 +23,7 @@ void checkUser()
     int lineNum;
     lineNum = 0;
 
-    printf("Enter User Name: \n");
+    printf("Enter User Name: ");
     scanf("%s", userName);
 
     char prompt[250];
@@ -42,7 +42,7 @@ void checkUser()
         }
     }
 
-    printf("Enter Password: \n");
+    printf("\n Enter Password: ");
     scanf("%s", password);
 
     prompt[0] = '\0';
@@ -68,6 +68,9 @@ void checkUser()
     {
         printf("Wrong Username or Password\n");
     }
+
+    strcpy(signedInUser, userName);
+    close(fileOpen);
     return;
 }
 
@@ -90,7 +93,7 @@ void addUser()
     while (1)
     {
         lineNum = 0;
-        printf("Enter User Name: \n");
+        printf("Enter User Name:");
         scanf("%s", userName);
 
         while (fgets(charline, sizeof(charline), fileOpen))
@@ -98,7 +101,7 @@ void addUser()
             lineNum++;
             if (strstr(charline, userName))
             {
-                printf("User Name already exits, please try again \n");
+                printf("\n User Name already exits, please try again \n");
                 presentUser = true;
                 break;
             }
@@ -109,14 +112,178 @@ void addUser()
         }
     }
 
-    printf("Enter Password: \n");
+    printf("\nEnter Password:");
     scanf("%s", password);
     fseek(fileOpen, 0, SEEK_END);
 
     fprintf(fileOpen, "\nUsername: %s", userName);
     fprintf(fileOpen, "\nPassword: %s", password);
 
-    printf("\nAccount Creation Successful! \n");
+    fprintf(fileOpen, "\n");
+    fprintf(fileOpen, "TRANSACTIONS:\n");
 
+    fprintf(fileOpen, "\n");
+    fprintf(fileOpen, "BUDGET:\n");
+
+    printf("\nAccount Creation Successful!\n");
+    close(fileOpen);
     return;
+}
+
+void writeTransaction(char *signedInUser, char Transaction)
+{
+    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    char charline[1024];
+    int lineNum = 0;
+    int trans = 0;
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, signedInUser))
+        {
+            trans = lineNum;
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "TRANSACTIONS:\n"))
+        {
+            fprintf(fileOpen, "%s", Transaction);
+            break;
+        }
+    }
+    close(fileOpen);
+}
+
+void writeBudget(char *signedInUser, char Budget)
+{
+    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    char charline[1024];
+    int lineNum = 0;
+    int trans = 0;
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, signedInUser))
+        {
+            trans = lineNum;
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "TRANSACTIONS:\n"))
+        {
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "BUDGET:\n"))
+        {
+            fprintf(fileOpen, "%s", Budget);
+            break;
+        }
+    }
+    close(fileOpen);
+}
+
+char *allTrans(char *signedInUser)
+{
+    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    FILE *transOpen = fopen("userTrans.txt", "r+");
+    char charline[1024];
+    int lineNum = 0;
+    int trans = 0;
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, signedInUser))
+        {
+            trans = lineNum;
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "TRANSACTIONS:\n"))
+        {
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "BUDGET:\n"))
+        {
+            break;
+        }
+        fputs(charline, transOpen);
+    }
+    close(fileOpen);
+    close(transOpen);
+
+    return "userTrans.txt";
+}
+
+char *allBud(char *signedInUser)
+{
+    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    FILE *budOpen = fopen("userBud.txt", "r+");
+    char charline[1024];
+    int lineNum = 0;
+    int trans = 0;
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, signedInUser))
+        {
+            trans = lineNum;
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "TRANSACTIONS:\n"))
+        {
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "BUDGET:\n"))
+        {
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        lineNum++;
+        if (strstr(charline, "Username:\n"))
+        {
+            break;
+        }
+        fputs(charline, budOpen);
+    }
+    close(fileOpen);
+    close(budOpen);
 }
