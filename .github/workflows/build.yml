@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build and Upload Convert Executable
-        run: gcc -o convert convert.c cmdReader.c usage.c converter.c
+        run: gcc SpendFlow.c -o SpendFlow GUI.c GUI_inputs.c users.c budget_calculation.c transation_helpers.c sortHistory.c addTransaction.c
       
       - name: Upload Convert Executable
         uses: actions/upload-artifact@v4
