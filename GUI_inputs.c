@@ -10,8 +10,8 @@
 #include "transaction_helpers.h"
 #include "sortHistory.h"
 
-void action(char* user) {
-    homePage(user);
+void action(char* user, long int balance) {
+    homePage(user, balance);
     printf("\n\n");
     int input;
     int inputCheck;
@@ -22,13 +22,13 @@ void action(char* user) {
             if (input == 1) {
                 loading();
                 transactionMenu(user);
-                transaction(user);
+                transaction(user,balance);
                 return;
             }
             else if (input == 2) {
                 loading();
                 budgetMenu(user);
-                budget(user);
+                budget(user,balance);
                 return;
             }
             else if (input == 3) {
@@ -49,7 +49,7 @@ void action(char* user) {
 }
 
 
-void budget(char* user) {
+void budget(char* user,long int balance) {
     printf("\n\n");
     int input;
     int inputCheck;
@@ -64,7 +64,7 @@ void budget(char* user) {
                 viewBudget(user);
             }
             else if (input == 3) {
-                action(user);
+                action(user,balance);
             }
             else if (input == 4) {
                 printf("The writeBudget() function allows users to define a budget for specific spending categories.\n");
@@ -86,26 +86,29 @@ void budget(char* user) {
     }
 }
 
-void transaction(char* user) {
+void transaction(char* user, long int balance) {
     printf("\n\n");
     int input;
     int inputCheck;
     int c;
     while(1) {
         inputCheck = scanf("%d", &input);
-        if (inputCheck && input < 5 && input > 0) {
+        if (inputCheck && input < 6 && input > 0) {
             if (input == 1) {
                 addTransaction(user);
             }
             else if (input == 2) {
-                sortHistory("dataBase.txt", "sortedTrans.txt");
-                printFileToTerminal("sortedTrans.txt");
+                printf("sort history");
+                //sortHistory();
                 exit(0);
             }
             else if (input == 3) {
-                action(user);
+                //setBalance(user);
             }
             else if (input == 4) {
+                action(user,balance);
+            }
+            else if (input == 5) {
                 printf("The addTransaction() function lets users input details for a new financial transaction.\n");
                 printf("Users specify the date, category (e.g., food, entertainment), amount, and optional notes.\n");
                 printf("This data is automatically saved and categorized, enabling easy tracking.\n\n");
@@ -182,7 +185,9 @@ void viewBudget(char* user) {
 
     char line[1024];
     while (fgets(line, sizeof(line), fileOpen)) {
-        printf("%s", line);
+        makeTop();
+        printText(line);
+        makeBase();
     }
 
     fclose(fileOpen);

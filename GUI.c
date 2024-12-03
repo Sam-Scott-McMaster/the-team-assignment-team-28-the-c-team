@@ -24,19 +24,29 @@ void welcome() {
     makeBase();
 }
 
-void homePage(char* user) {
+void homePage(char* user, long int balance) {
     printf("\n\n");
     makeTop();
-    makeSides(4);
+    makeSides(3);
     printText("Nice to see you");
     printText(user);
-    makeSides(3);
+    makeSides(1);
+    if (balance != -1) {
+        char bal[20];
+        snprintf(bal,sizeof(bal),"$%ld",balance);
+        printText(bal);   
+    }
+    else {
+        printText("Please add your balance in");
+        printText("The transaction window!");
+    }
+    makeSides(2);
     printText("TYPE 1 FOR TRANSACTIONS");
     makeSides(1);
     printText("TYPE 2 FOR BUDGETING");
     makeSides(1);
     printText("TYPE 3 TO EXIT");
-    makeSides(3);
+    makeSides(1);
     makeBase();
 }
 
@@ -50,9 +60,11 @@ void transactionMenu(char* user) {
     makeSides(2);
     printText("TYPE 2 TO VIEW TRANSACTIONS");
     makeSides(2);
-    printText("TYPE 3 TO GO BACK");
-    makeSides(3);
-    printText("TYPE 4 FOR HELP");
+    printText("TYPE 3 TO SET BALANCE");
+    makeSides(2);
+    printText("TYPE 4 TO GO BACK");
+    makeSides(1);
+    printText("TYPE 5 FOR HELP");
     makeBase();
 }
 

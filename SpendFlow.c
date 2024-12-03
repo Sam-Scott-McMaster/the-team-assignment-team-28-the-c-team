@@ -24,13 +24,12 @@ int main(int argc, char* argv[]) {
     }
     int running = 1;
     char currentUser[200] = "";
+    long int accountBalance = -1;
     
     welcome();
     signIn_or_Up(currentUser);
     while (running) {
-        action(currentUser);
-        //Test
+        action(currentUser,accountBalance);
     }
-
     return EXIT_SUCCESS;
 }
