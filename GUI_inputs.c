@@ -11,6 +11,7 @@
 #include "sortHistory.h"
 
 void action(char* user) {
+    homePage(user);
     printf("\n\n");
     int input;
     int inputCheck;
@@ -63,7 +64,7 @@ void budget(char* user) {
                 viewBudget(user);
             }
             else if (input == 3) {
-                exit(0);
+                action(user);
             }
             else if (input == 4) {
                 printf("The writeBudget() function allows users to define a budget for specific spending categories.\n");
@@ -102,7 +103,7 @@ void transaction(char* user) {
                 exit(0);
             }
             else if (input == 3) {
-                exit(0);
+                action(user);
             }
             else if (input == 4) {
                 printf("The addTransaction() function lets users input details for a new financial transaction.\n");

@@ -27,7 +27,6 @@ int main(int argc, char* argv[]) {
     
     welcome();
     signIn_or_Up(currentUser);
-    homePage(currentUser);
     while (running) {
         action(currentUser);
         //Test
