@@ -1,0 +1,17 @@
+
+Username: V
+Password: P
+TRANSACTIONS:
+
+BUDGET:
+
+Income: 1000.00 | Limit: 100.00 | Suggested Savings: 90.00%
+Income: 100.00 | Limit: 10.00 | Suggested Savings: 90.00%
+2020-01-12 Pizza 20.00 Food
+
+Username: Vir
+Password: P
+TRANSACTIONS:
+
+BUDGET:
+

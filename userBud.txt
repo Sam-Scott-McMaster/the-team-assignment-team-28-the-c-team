@@ -1,4 +1,3 @@
 
-Income: 100.00 | Limit: 9.00 | Suggested Savings: 91.00%
-Income: 200.00 | Limit: 20.00 | Suggested Savings: 90.00%
-Income: 2.00 | Limit: 1.00 | Suggested Savings: 50.00%
+Income: 1000.00 | Limit: 100.00 | Suggested Savings: 90.00%
+Income: 100.00 | Limit: 10.00 | Suggested Savings: 90.00%
