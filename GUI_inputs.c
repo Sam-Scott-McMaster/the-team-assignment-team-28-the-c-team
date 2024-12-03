@@ -98,9 +98,8 @@ void transaction(char* user, long int balance) {
                 addTransaction(user);
             }
             else if (input == 2) {
-                printf("sort history");
-                //sortHistory();
-                exit(0);
+                sortHistory("dataBase.txt", "sortedTrans.txt");
+                printFileToTerminal("sortedTrans.txt");
             }
             else if (input == 3) {
                 //setBalance(user);

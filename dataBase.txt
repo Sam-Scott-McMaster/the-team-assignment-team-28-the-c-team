@@ -1,53 +1,9 @@
 
-<<<<<<< HEAD
-Username: Test
-Password: test
-=======
-Username: V
-Password: P
->>>>>>> d55ffcdd66ca2d3d52211274ede4449966c8e294
+Username: Talha
+Password: 123
 TRANSACTIONS:
+2012-10-10 Test2 12.00 Ï’»O√UBills
+2034-12-12 Testing1 12.34 Ï’»O√UFood
 
 BUDGET:
 
-<<<<<<< HEAD
-
-Username: hello
-Password: bye
-TRANSACTIONS:
-2001-02-15 tims 3.99 Food
-2006-03-10 supercool 432.00 Bills
-2006-03-11 idk 32.00 Food
-2005-03-15 brithday 555.00 Entertainment
-
-BUDGET:
-Income: 10000.00 | Limit: 5000.00 | Suggested Savings: 50.00%
-=======
-Income: 1000.00 | Limit: 100.00 | Suggested Savings: 90.00%
-Income: 100.00 | Limit: 10.00 | Suggested Savings: 90.00%
-2020-01-12 Pizza 20.00 Food
-
-Username: Vir
-Password: P
-TRANSACTIONS:
-
-BUDGET:
-Income: 1000.00 | Needs: 250.00 | Disposable Income: 750.00 | Suggested Savings: 150.00
-Income: 12.00 | Limit: 10.00 | Suggested Savings: 16.67%
->>>>>>> d55ffcdd66ca2d3d52211274ede4449966c8e294
-
-
-Username: Tal
-Password: Ha
-TRANSACTIONS:
-
-BUDGET:
-Income: 200000.00 | Needs: 2000.00 | Disposable Income: 198000.00 | Suggested Savings: 39600.00
-
-
-Username: q
-Password: a
-TRANSACTIONS:
-
-BUDGET:
-Income: 20000.00 | Needs: 30.00 | Disposable Income: 19970.00 | Suggested Savings: 3994.00
