@@ -203,35 +203,47 @@ void writeBudget(char *signedInUser, char *Budget)
 
     char charline[1024];
     char buffer[10000] = "";
-    int foundUser = 0, foundBudget = 0;
+    int foundUser = 0, foundBudget = 0, skipNextLine = 0;
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
-
-        strcat(buffer, charline);
-
-        if (!foundUser && strncmp(charline, "Username: ", 10) == 0 && strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 && charline[10 + strlen(signedInUser)] == '\n')
+        // Check if we need to skip the next line (line under BUDGET:)
+        if (skipNextLine)
         {
-            foundUser = 1;
+            skipNextLine = 0;       // Skip the current line and reset flag
+            strcat(buffer, Budget); // Replace it with the new budget
+            strcat(buffer, "\n");
+            foundBudget = 1; // Mark that budget was updated
+            continue;
         }
 
+        // Append the current line to the buffer
+        strcat(buffer, charline);
+
+        // Check if this line contains the username
+        if (!foundUser && strncmp(charline, "Username: ", 10) == 0 &&
+            strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 &&
+            charline[10 + strlen(signedInUser)] == '\n')
+        {
+            foundUser = 1; // User found
+        }
+
+        // Check if this line is the BUDGET header for the found user
         if (foundUser && strncmp(charline, "BUDGET:\n", 8) == 0)
         {
-            strcat(buffer, Budget);
-            strcat(buffer, "\n");
-            foundBudget = 1;
-            foundUser = 0;
+            skipNextLine = 1; // Mark to skip the next line
         }
     }
 
     fclose(fileOpen);
 
-    if (!foundUser && !foundBudget)
+    if (!foundUser || !foundBudget)
     {
-        printf("Error: BUDGET section not found for user '%s'.\n", signedInUser);
+        printf("Error: BUDGET section not found or could not be updated for user '%s'.\n", signedInUser);
         return;
     }
 
+    // Open the file for writing and update it
     fileOpen = fopen("dataBase.txt", "w");
     if (fileOpen == NULL)
     {

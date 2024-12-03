@@ -36,3 +36,18 @@ Income: 1000.00 | Needs: 250.00 | Disposable Income: 750.00 | Suggested Savings:
 Income: 12.00 | Limit: 10.00 | Suggested Savings: 16.67%
 >>>>>>> d55ffcdd66ca2d3d52211274ede4449966c8e294
 
+
+Username: Tal
+Password: Ha
+TRANSACTIONS:
+
+BUDGET:
+Income: 200000.00 | Needs: 2000.00 | Disposable Income: 198000.00 | Suggested Savings: 39600.00
+
+
+Username: q
+Password: a
+TRANSACTIONS:
+
+BUDGET:
+Income: 20000.00 | Needs: 30.00 | Disposable Income: 19970.00 | Suggested Savings: 3994.00

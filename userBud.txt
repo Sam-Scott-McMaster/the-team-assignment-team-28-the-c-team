@@ -1,7 +1,1 @@
-<<<<<<< HEAD
-Income: 10000.00 | Limit: 5000.00 | Suggested Savings: 50.00%
-=======
-Income: 1000.00 | Needs: 250.00 | Disposable Income: 750.00 | Suggested Savings: 150.00
-Income: 12.00 | Limit: 10.00 | Suggested Savings: 16.67%
->>>>>>> d55ffcdd66ca2d3d52211274ede4449966c8e294
-
+Income: 20000.00 | Needs: 30.00 | Disposable Income: 19970.00 | Suggested Savings: 3994.00
