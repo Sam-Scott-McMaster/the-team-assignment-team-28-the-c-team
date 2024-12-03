@@ -4,13 +4,27 @@
 
 void addBudget(char *user) {
     double income, limit, savingsPercentage;
+    int validInput;
 
+    // Loop until valid inputs are received
     while (1) {
-        // Prompt for income and budget limit
+        // Prompt for income
         printf("Enter your monthly income: ");
-        scanf("%lf", &income);
+        validInput = scanf("%lf", &income);
+        if (validInput != 1) {
+            printf("Error: Please enter a valid number.\n");
+            while (getchar() != '\n');
+            continue;
+        }
+
+        // Prompt for budget limit
         printf("Enter your monthly budget limit: ");
-        scanf("%lf", &limit);
+        validInput = scanf("%lf", &limit);
+        if (validInput != 1) {
+            printf("Error: Please enter a valid number.\n");
+            while (getchar() != '\n');
+            continue;
+        }
 
         // Validate inputs
         if (income > 0 && limit > 0 && limit <= income) {
