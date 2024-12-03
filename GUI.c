@@ -50,7 +50,7 @@ void transactionMenu(char* user) {
     makeSides(2);
     printText("TYPE 2 TO VIEW TRANSACTIONS");
     makeSides(2);
-    printText("TYPE 3 TO EXIT");
+    printText("TYPE 3 TO GO BACK");
     makeSides(3);
     printText("TYPE 4 FOR HELP");
     makeBase();
@@ -66,7 +66,7 @@ void budgetMenu(char* user) {
     makeSides(2);
     printText("TYPE 2 TO VIEW BUDGET");
     makeSides(2);
-    printText("TYPE 3 TO EXIT");
+    printText("TYPE 3 TO GO BACK");
     makeSides(3);
     printText("TYPE 4 FOR HELP");
     makeBase();
