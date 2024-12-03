@@ -55,6 +55,8 @@ void sortHistory(char* inputFile, char* outputFile) {
         free(lines);
         return;
     }
+    fprintf(outFile, "Sorted Transactions\n");
+    fprintf(outFile, "--------------------\n");
 
     for (size_t i = 0; i < lineCount; i++) {
         fprintf(outFile, "%s", lines[i]);
@@ -64,7 +66,21 @@ void sortHistory(char* inputFile, char* outputFile) {
     free(lines);
     fclose(outFile);
 
-    printf("Sorted history saved to file: %s\n", outputFile);
+}
+
+void printFileToTerminal(const char* filename) {
+    FILE* file = fopen(filename, "r");
+    if (!file) {
+        perror("Error opening file to print");
+        return;
+    }
+
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), file)) {
+        printf("%s", buffer); // Print each line to the terminal
+    }
+
+    fclose(file);
 }
 
 // how it should be used:

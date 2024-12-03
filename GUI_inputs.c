@@ -97,8 +97,8 @@ void transaction(char* user) {
                 addTransaction(user);
             }
             else if (input == 2) {
-                printf("sort history");
-                //sortHistory();
+                sortHistory("dataBase.txt", "sortedTrans.txt");
+                printFileToTerminal("sortedTrans.txt");
                 exit(0);
             }
             else if (input == 3) {

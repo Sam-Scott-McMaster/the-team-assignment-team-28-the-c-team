@@ -1,0 +1,6 @@
+Sorted Transactions
+--------------------
+2001-02-15 tims 3.99 Food
+2005-03-15 brithday 555.00 Entertainment
+2006-03-10 supercool 432.00 Bills
+2006-03-11 idk 32.00 Food
