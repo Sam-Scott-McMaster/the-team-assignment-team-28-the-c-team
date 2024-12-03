@@ -14,5 +14,6 @@ Password: P
 TRANSACTIONS:
 
 BUDGET:
+Income: 1000.00 | Needs: 250.00 | Disposable Income: 750.00 | Suggested Savings: 150.00
 Income: 12.00 | Limit: 10.00 | Suggested Savings: 16.67%
 

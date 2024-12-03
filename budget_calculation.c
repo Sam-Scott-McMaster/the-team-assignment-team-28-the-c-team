@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 void addBudget(char *user) {
-    double income, limit, savingsPercentage;
+    double income, needs, disposableIncome, suggestedSavings;
     int validInput;
 
     // Loop until valid inputs are received
@@ -17,9 +17,9 @@ void addBudget(char *user) {
             continue;
         }
 
-        // Prompt for budget limit
-        printf("Enter your monthly budget limit: ");
-        validInput = scanf("%lf", &limit);
+        // Prompt for money spent on needs
+        printf("Enter your monthly spending on needs: ");
+        validInput = scanf("%lf", &needs);
         if (validInput != 1) {
             printf("Error: Please enter a valid number.\n");
             while (getchar() != '\n');
@@ -27,20 +27,22 @@ void addBudget(char *user) {
         }
 
         // Validate inputs
-        if (income > 0 && limit > 0 && limit <= income) {
+        if (income > 0 && needs >= 0 && needs <= income) {
             break;
         } else {
-            printf("Error: Invalid budget values. Please try again.\n");
+            printf("Error: Invalid values, should be non-negative and less than or equal to income.\n");
         }
     }
 
-    // Calculate suggested savings percentage
-    savingsPercentage = (income - limit) / income * 100;
+    // Calculate disposable income and suggested savings
+    disposableIncome = income - needs;
+    suggestedSavings = disposableIncome * 0.20;
 
     // Prepare the budget entry
     char budget[200];
-    snprintf(budget, sizeof(budget), "Income: %.2lf | Limit: %.2lf | Suggested Savings: %.2lf%%",
-             income, limit, savingsPercentage);
+    snprintf(budget, sizeof(budget),
+             "Income: %.2lf | Needs: %.2lf | Disposable Income: %.2lf | Suggested Savings: %.2lf",
+             income, needs, disposableIncome, suggestedSavings);
 
     // Save the budget data
     writeBudget(user, budget);
