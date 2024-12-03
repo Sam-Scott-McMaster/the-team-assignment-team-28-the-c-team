@@ -185,9 +185,7 @@ void viewBudget(char* user) {
 
     char line[1024];
     while (fgets(line, sizeof(line), fileOpen)) {
-        makeTop();
-        printText(line);
-        makeBase();
+        printf("%s",line);
     }
 
     fclose(fileOpen);
