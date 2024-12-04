@@ -96,15 +96,15 @@ void checkUser(char *signedInUser)
 }
 
 /* setBalance
- * This function validates the sign in information passed in by the user. It first looks for the username, and once that is found. It validates the password.
- * If the sign in is sucesseful, a message is displayed and the user is considered "Signed In". char *signedInUser is the user name of the current signed in user
- * that is to be references elsewhere in the code for other processess, and is assigned a value in this function. This function returns null or exit code 0 if account
- * info is wrong.
+ * This function sets the balance by looking for the username first with signedInUser, and then overwritng the line right below balance based on user input. The file is first opened
+ * read, then closed and opened to right. It follows the same procedure as the following functions, this one being a bit more shallow(requires less iterating). The function also
+ * takes a double pointer varible *balance and casts the users input balance to a double value to reference later.
+ * The function returns Null.
  */
 
-void setBalance(char *signedInUser)
+void setBalance(char *signedInUser, double *balance)
 {
-    char balance[200];
+    char newBalance[200];
 
     FILE *fileOpen = fopen("dataBase.txt", "r");
 
@@ -114,13 +114,15 @@ void setBalance(char *signedInUser)
     bool overwriteLine = false;
 
     printf("\nEnter Balance: ");
-    scanf("%199s", balance);
+    scanf("%199s", newBalance);
+
+    *balance = atof(newBalance);
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
         if (overwriteLine)
         {
-            strcat(buffer, balance);
+            strcat(buffer, newBalance);
             strcat(buffer, "\n");
             overwriteLine = false;
             continue;
@@ -128,9 +130,7 @@ void setBalance(char *signedInUser)
 
         strcat(buffer, charline);
 
-        if (!isUser && strncmp(charline, "Username: ", 10) == 0 &&
-            strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 &&
-            charline[10 + strlen(signedInUser)] == '\n')
+        if (!isUser && strncmp(charline, "Username: ", 10) == 0 && strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 && charline[10 + strlen(signedInUser)] == '\n')
         {
             isUser = true;
         }
@@ -150,6 +150,11 @@ void setBalance(char *signedInUser)
 
     printf("Balance Successfully set!\n");
 }
+
+/* returnBalance
+ * This function assigned the value of balance of the current user to a double pointer variable *balance by first finding the user name then getting the line right below balance.
+ * This functions returns Null.
+ */
 
 void returnBalance(char *signedInUser, double *balance)
 {
