@@ -62,15 +62,15 @@ double addCost() {
 
 //function for category validation
 int checkCategory(int category, char *cata) {
-    const char *categories[] = {"Food", "Entertainment", "Bills", "Travel", "Others"};
+    const char *categories[] = {"Food", "Entertainment", "Bills", "Other"};
     int valid = 0;
 
     if (category > 0 && category < 5) {
-        strcat(cata, categories[category-1]);
+        strcpy(cata, categories[category-1]);
         valid = 1;
     }
     if (!valid) {
-        printf("Error: Invalid category. Choose from: Food, Entertainment, Bills, Travel, Others.\n");
+        printf("Error: Invalid category. Choose from: Food, Entertainment, Bills, Others.\n");
     }
     return valid;
 }

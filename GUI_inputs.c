@@ -8,7 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 
-//Includes all methods creating by group
+//Includes all methods created by group
 #include "GUI.h"
 #include "GUI_inputs.h"
 #include "users.h"
@@ -23,7 +23,7 @@
 * function
 * includes clean input handling for invalid inputs
 */
-void action(char* user, long int balance) {
+void action(char* user, double* balance) {
     homePage(user, balance); //Prints homepage
     printf("\n\n");
     int input;
@@ -53,7 +53,7 @@ void action(char* user, long int balance) {
         else {
             printf("\033[1A");
             printf("\033[2K");
-            printf("Invalid input, try again: ");
+            printf("Invalid, try again: ");
             //Erases current input to avoid loop
             while ((c = getchar()) != '\n' && c != EOF) { }
         }
@@ -64,7 +64,7 @@ void action(char* user, long int balance) {
 * handles user input for budget menu, calling appropriate methods
 * also has help option
 */
-void budget(char* user,long int balance) {
+void budget(char* user,double* balance) {
     printf("\n\n");
     int input;
     int inputCheck;
@@ -104,7 +104,7 @@ void budget(char* user,long int balance) {
 * takes in username and user balance
 * handles invalid user input same way as previous functions
 */
-void transaction(char* user, long int balance) {
+void transaction(char* user, double* balance) {
     printf("\n\n");
     int input;
     int inputCheck;
@@ -114,11 +114,13 @@ void transaction(char* user, long int balance) {
         if (inputCheck && input < 6 && input > 0) {
             if (input == 1) {
                 addTransaction(user);
+                action(user,balance);
             }
             else if (input == 2) {
                 //Calls methods to print sorted transactions
                 sortHistory("dataBase.txt", "sortedTrans.txt");
                 printFileToTerminal("sortedTrans.txt");
+                action(user,balance);
             }
             else if (input == 3) {
                 //setBalance(user);
