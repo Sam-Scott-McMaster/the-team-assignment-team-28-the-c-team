@@ -172,7 +172,7 @@ void subBalance(char *signedInUser, double *balance, float subtraction)
 
     *balance = atof(newBalance) - subtraction;
 
-    snprintf(newBalance, sizeof(buffer), "%.2f", balance);
+    snprintf(newBalance, sizeof(buffer), "%.2f", *balance);
 
     while (fgets(charline, sizeof(charline), fileOpen))
     {
