@@ -17,16 +17,16 @@ can get into your account.
 
 Next, you can either update your bank balance, manage transactions, or manage budget.
 
-#### Balance
+### Balance
 
 From here you can set your balance, this will be viewable on the homepage of the app
 
-#### Transactions
+### Transactions
 
 From here you can add a transaction with the date, name, cost, and catagory
 
 You can also view all your transactions in order of date
 
-#### Budget
+### Budget
 
 From here you can create a budget and view it to see your spending goals
