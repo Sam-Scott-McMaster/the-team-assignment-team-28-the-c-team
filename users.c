@@ -133,7 +133,7 @@ void setBalance(char *signedInUser)
             isUser = true;
         }
 
-        if (isUser && strncmp(charline, "BUDGET:\n", 8) == 0)
+        if (isUser && strncmp(charline, "BALANCE:\n", 8) == 0)
         {
             overwriteLine = true;
         }
