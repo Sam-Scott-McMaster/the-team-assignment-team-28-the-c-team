@@ -113,7 +113,7 @@ void transaction(char* user, double* balance) {
         inputCheck = scanf("%d", &input);
         if (inputCheck && input < 6 && input > 0) {
             if (input == 1) {
-                addTransaction(user);
+                addTransaction(user, balance);
                 action(user,balance);
             }
             else if (input == 2) {
@@ -123,7 +123,8 @@ void transaction(char* user, double* balance) {
                 action(user,balance);
             }
             else if (input == 3) {
-                //setBalance(user);
+                setBalance(user,balance);
+                action(user,balance);
             }
             else if (input == 4) {
                 action(user,balance);

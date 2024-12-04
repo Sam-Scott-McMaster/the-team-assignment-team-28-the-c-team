@@ -1,5 +1,3 @@
 Sorted Transactions
 --------------------
-2024-12-03 PC 3200.00 Bills
-2024-12-04 Laptop 700.00 Others
-2024-12-05 Food 12.00 Food
+2024-12-04 Laptop 1000.00 Other

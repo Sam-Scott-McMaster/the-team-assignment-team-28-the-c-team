@@ -11,5 +11,5 @@ char *addDate();
 char *addName();
 double addCost();
 char *addCategory();
-void addTransaction(char* userName);
+void addTransaction(char* userName, double* bal);
 #endif

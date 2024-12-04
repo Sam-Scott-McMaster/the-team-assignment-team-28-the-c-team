@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "transaction_helpers.h"
 #include "users.h"
 
 
-void addTransaction(char* userName) {
+void addTransaction(char* userName, double* bal) {
     printf("Enter transaction date (YYYY-MM-DD): ");
     char date[11];
     scanf("%10s", date);
@@ -42,4 +43,6 @@ void addTransaction(char* userName) {
     snprintf(transFinal, sizeof(transFinal), "%s %s %.2f %s", date, name, cost, cata);
 
     writeTransaction(userName, transFinal);
+
+    subBalance(userName, bal, cost);
 }

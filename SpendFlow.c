@@ -7,6 +7,7 @@
 #include <string.h>
 #include "GUI.h"
 #include "GUI_inputs.h"
+#include "users.h"
 
 /* help
 *
@@ -44,13 +45,14 @@ int main(int argc, char* argv[]) {
     //currentUser, updated by other methods
     char currentUser[200] = "";
     //accountBalance for current user, set to -1 initially
-    double accountBalance = -1;
+    double accountBalance;
     
     //Prints welcome menu in terminal
     welcome();
     //Lets user sign in or up, updating currentUser name
     signIn_or_Up(currentUser);
     while (1) {
+        returnBalance(currentUser,&accountBalance);
         //Continues prompting user for next action until they exit
         action(currentUser,&accountBalance);
     }
