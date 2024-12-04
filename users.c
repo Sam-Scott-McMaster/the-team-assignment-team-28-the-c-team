@@ -167,10 +167,7 @@ void subBalance(char *signedInUser, double *balance, float subtraction)
     bool isUser = false;
     bool overwriteLine = false;
 
-    printf("\nEnter Balance: ");
-    scanf("%199s", newBalance);
-
-    *balance = atof(newBalance) - subtraction;
+    *balance = *balance - subtraction;
 
     snprintf(newBalance, sizeof(buffer), "%.2f", *balance);
 
