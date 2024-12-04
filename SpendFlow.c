@@ -33,7 +33,8 @@ void help() {
 * (user must select the exit option when prompted)
 */
 int main(int argc, char* argv[]) {
-    if (argc > 1) { //Checks if argument --help is given from user
+    if (argc > 1) { 
+        //Checks if argument --help is given from user
         if (strcmp(argv[1], "--help") == 0 ) {
             help();
             exit(0);
@@ -43,7 +44,7 @@ int main(int argc, char* argv[]) {
     //currentUser, updated by other methods
     char currentUser[200] = "";
     //accountBalance for current user, set to -1 initially
-    long int accountBalance = -1;
+    double accountBalance = -1;
     
     //Prints welcome menu in terminal
     welcome();
@@ -51,7 +52,7 @@ int main(int argc, char* argv[]) {
     signIn_or_Up(currentUser);
     while (1) {
         //Continues prompting user for next action until they exit
-        action(currentUser,accountBalance);
+        action(currentUser,&accountBalance);
     }
     //Exits
     return EXIT_SUCCESS;

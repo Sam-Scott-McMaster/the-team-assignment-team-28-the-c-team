@@ -37,16 +37,16 @@ void welcome() {
 * if balance isn't set yet
 * allows access to transactions and budget menus
 */
-void homePage(char* user, long int balance) {
+void homePage(char* user, double* balance) {
     printf("\n\n");
     makeTop();
     makeSides(3);
     printText("Nice to see you");
     printText(user);
     makeSides(1);
-    if (balance != -1) { //If balance isn't initial value, prints balance
+    if (*balance != -1) { //If balance isn't initial value, prints balance
         char bal[20];
-        snprintf(bal,sizeof(bal),"$%ld",balance);
+        snprintf(bal,sizeof(bal),"$%.2f",*balance);
         printText(bal);   
     }
     else { //Otherwise asks user to add their balance

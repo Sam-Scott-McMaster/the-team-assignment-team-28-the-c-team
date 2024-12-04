@@ -31,7 +31,7 @@ void addTransaction(char* userName) {
 
     printf("Choose a category: 1) Food 2) Entertainment 3) Bills 4) Other: ");
     int category;
-    char cata[100];
+    char cata[100] = "";
     if (scanf("%d", &category) != 1 || !checkCategory(category, cata)) {
         printf("Invalid category. Please try again.\n");
         return;

@@ -1,18 +1,11 @@
 
 Username: Talha
 Password: 123
-TRANSACTIONS:
-2012-10-10 Test2 12.00 Ï’»O√UBills
-2034-12-12 Testing1 12.34 Ï’»O√UFood
-
-BUDGET:
-
-
-Username: q
-Password: a
 BALANCE:
 TRANSACTIONS:
-2020-11-20 Huzayl 2000.00 Ïµ˚"nUEntertainment
+2024-12-05 Food 12.00 Food
+2024-12-03 PC 3200.00 Bills
+2024-12-04 Laptop 700.00 Others
 
 BUDGET:
 
