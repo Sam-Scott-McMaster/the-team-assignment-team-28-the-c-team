@@ -95,6 +95,85 @@ void checkUser(char *signedInUser)
     return;
 }
 
+void setBalance(char *signedInUser)
+{
+    char balance[200];
+
+    FILE *fileOpen = fopen("dataBase.txt", "r");
+    if (fileOpen == NULL)
+    {
+        printf("Error: Could not open the file.\n");
+        return;
+    }
+
+    char charline[1024];
+    char buffer[10000] = "";
+    bool isUser = false;
+    bool overwriteLine = false;
+
+    printf("\nEnter Balance: ");
+    scanf("%199s", balance);
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        if (overwriteLine)
+        {
+            strcat(buffer, balance);
+            strcat(buffer, "\n");
+            overwriteLine = false;
+            continue;
+        }
+
+        strcat(buffer, charline);
+
+        if (!isUser && strncmp(charline, "Username: ", 10) == 0 &&
+            strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 &&
+            charline[10 + strlen(signedInUser)] == '\n')
+        {
+            isUser = true;
+        }
+
+        if (isUser && strncmp(charline, "BUDGET:\n", 8) == 0)
+        {
+            overwriteLine = true;
+        }
+    }
+
+    fclose(fileOpen);
+
+    fileOpen = fopen("dataBase.txt", "w");
+
+    fputs(buffer, fileOpen);
+    fclose(fileOpen);
+
+    printf("Balance Successfully set!\n");
+}
+
+void returnBalance(char *signedInUser, double *balance)
+{
+    FILE *fileOpen = fopen("dataBase.txt", "r+");
+    char charline[1024];
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        if (strstr(charline, signedInUser))
+        {
+            break;
+        }
+    }
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        if (strstr(charline, "BALANCE:\n"))
+        {
+            if (fgets(charline, sizeof(charline), fileOpen))
+            {
+                *balance = atof(charline);
+                fclose(fileOpen);
+            }
+        }
+    }
+}
 /*  addUser
  * This function adds accounts to the database on creation from the user. If the username input by the user already exists, then it will tell the user that
  * that user name is already taken. If the username is good. It will then ask for a password (both one word) and then append it to the database. he user will be
@@ -152,7 +231,7 @@ void addUser(char *signedInUser)
 
     fprintf(fileOpen, "\nUsername: %s\n", userName);
     fprintf(fileOpen, "Password: %s\n", password);
-    fprintf(fileOpen, "BALANCE:\n");
+    fprintf(fileOpen, "BALANCE:\n\n");
     fprintf(fileOpen, "TRANSACTIONS:\n\n");
     fprintf(fileOpen, "BUDGET:\n\n");
 
@@ -295,7 +374,7 @@ char *allTrans(char *signedInUser)
 }
 
 /* allBud
- * This function appends the budget information to a new file to be references in other places. Works like allTrans, but this time looks for Bsudget instead of Transactions.
+ * This function appends the budget information to a new file to be references in other places. Works like allTrans, but this time looks for Budget instead of Transactions.
    Returns Char* containg file name of Budget for that user.
  */
 
