@@ -1,4 +1,5 @@
 Sorted Transactions
 --------------------
 2012-10-10 Test2 12.00 ìÕÈOÃUBills
+2020-11-20 Huzayl 2000.00 ìµû"nUEntertainment
 2034-12-12 Testing1 12.34 ìÕÈOÃUFood

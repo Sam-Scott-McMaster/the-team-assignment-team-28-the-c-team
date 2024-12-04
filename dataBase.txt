@@ -7,3 +7,12 @@ TRANSACTIONS:
 
 BUDGET:
 
+
+Username: q
+Password: a
+BALANCE:
+TRANSACTIONS:
+2020-11-20 Huzayl 2000.00 ìµû"nUEntertainment
+
+BUDGET:
+
