@@ -151,6 +151,62 @@ void setBalance(char *signedInUser, double *balance)
     printf("Balance Successfully set!\n");
 }
 
+/* subBalance
+ * This function is exactly the same as the last one but takes in a float subtraction parameter to subtract transactions from the balance
+ * The function returns Null.
+ */
+
+void subBalance(char *signedInUser, double *balance, float subtraction)
+{
+    char newBalance[200];
+
+    FILE *fileOpen = fopen("dataBase.txt", "r");
+
+    char charline[1024];
+    char buffer[10000] = "";
+    bool isUser = false;
+    bool overwriteLine = false;
+
+    printf("\nEnter Balance: ");
+    scanf("%199s", newBalance);
+
+    *balance = atof(newBalance) - subtraction;
+
+    snprintf(newBalance, sizeof(buffer), "%.2f", balance);
+
+    while (fgets(charline, sizeof(charline), fileOpen))
+    {
+        if (overwriteLine)
+        {
+            strcat(buffer, newBalance);
+            strcat(buffer, "\n");
+            overwriteLine = false;
+            continue;
+        }
+
+        strcat(buffer, charline);
+
+        if (!isUser && strncmp(charline, "Username: ", 10) == 0 && strncmp(charline + 10, signedInUser, strlen(signedInUser)) == 0 && charline[10 + strlen(signedInUser)] == '\n')
+        {
+            isUser = true;
+        }
+
+        if (isUser && strncmp(charline, "BALANCE:\n", 8) == 0)
+        {
+            overwriteLine = true;
+        }
+    }
+
+    fclose(fileOpen);
+
+    fileOpen = fopen("dataBase.txt", "w");
+
+    fputs(buffer, fileOpen);
+    fclose(fileOpen);
+
+    printf("Balance Successfully set!\n");
+}
+
 /* returnBalance
  * This function assigned the value of balance of the current user to a double pointer variable *balance by first finding the user name then getting the line right below balance.
  * This functions returns Null.
