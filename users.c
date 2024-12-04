@@ -95,16 +95,18 @@ void checkUser(char *signedInUser)
     return;
 }
 
+/* setBalance
+ * This function validates the sign in information passed in by the user. It first looks for the username, and once that is found. It validates the password.
+ * If the sign in is sucesseful, a message is displayed and the user is considered "Signed In". char *signedInUser is the user name of the current signed in user
+ * that is to be references elsewhere in the code for other processess, and is assigned a value in this function. This function returns null or exit code 0 if account
+ * info is wrong.
+ */
+
 void setBalance(char *signedInUser)
 {
     char balance[200];
 
     FILE *fileOpen = fopen("dataBase.txt", "r");
-    if (fileOpen == NULL)
-    {
-        printf("Error: Could not open the file.\n");
-        return;
-    }
 
     char charline[1024];
     char buffer[10000] = "";
@@ -231,7 +233,8 @@ void addUser(char *signedInUser)
 
     fprintf(fileOpen, "\nUsername: %s\n", userName);
     fprintf(fileOpen, "Password: %s\n", password);
-    fprintf(fileOpen, "BALANCE:\n\n");
+    fprintf(fileOpen, "BALANCE:\n");
+    fprintf(fileOpen, "-1\n");
     fprintf(fileOpen, "TRANSACTIONS:\n\n");
     fprintf(fileOpen, "BUDGET:\n\n");
 
