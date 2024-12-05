@@ -1,9 +1,8 @@
 
-Username: Talha
-Password: 123
+Username: yo
+Password: yo
 TRANSACTIONS:
-2012-10-10 Test2 12.00 Ï’»O√UBills
-2034-12-12 Testing1 12.34 Ï’»O√UFood
+2003-03-12 yo 2.00 Food
 
 BUDGET:
 

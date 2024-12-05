@@ -1,9 +1,13 @@
+//team 28 - Provides functions for validating and prompting user input for transaction details including date, name, cost, and category.
+
 #include "transaction_helpers.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-//function for date validation
+// Function to prompt the user for a date and validate the input
+// Prompts until a valid date is entered
+// Returns: a dynamically allocated string containing the valid date
 int checkDate(const char *date) {
     if (strlen(date) != 10 || date[4] != '-' || date[7] != '-') {
         printf("Error: Invalid date format. Use YYYY-MM-DD.\n");
@@ -12,7 +16,9 @@ int checkDate(const char *date) {
     return 1;
 }
 
-//prompts and validates a date
+// Function to prompt the user for a date and validate the input
+// Prompts until a valid date is entered
+// Returns: a dynamically allocated string containing the valid date
 char *addDate() {
     char *date = malloc(11 * sizeof(char));
     do {
@@ -22,7 +28,10 @@ char *addDate() {
     return date;
 }
 
-//function for name validation
+
+// Function to validate a transaction name
+// Parameters: name (const char*)
+// Returns: 1 if the name is valid, 0 otherwise
 int checkName(const char *name) {
     if (strlen(name) == 0) {
         printf("Error: Name cannot be empty.\n");
@@ -31,7 +40,9 @@ int checkName(const char *name) {
     return 1;
 }
 
-//validates a transaction name
+// Function to prompt the user for a transaction name and validate the input
+// Prompts until a valid name is entered
+// Returns: a dynamically allocated string containing the valid name
 char *addName() {
     char *name = malloc(100 * sizeof(char));
     do {
@@ -41,7 +52,9 @@ char *addName() {
     return name;
 }
 
-//function for cost validation
+// Function to validate a transaction cost
+// Parameters: cost (double)
+// Returns: 1 if the cost is valid, 0 otherwise
 int checkCost(double cost) {
     if (cost <= 0) {
         printf("Error: Cost must be greater than zero.\n");
@@ -50,7 +63,9 @@ int checkCost(double cost) {
     return 1;
 }
 
-//validates transaction cost
+// Function to prompt the user for a transaction cost and validate the input
+// Prompts until a valid cost is entered
+// Returns: the valid cost as a double
 double addCost() {
     double cost;
     do {
@@ -60,7 +75,9 @@ double addCost() {
     return cost;
 }
 
-//function for category validation
+// Function to validate a transaction category
+// Parameters: category (int), cata (char* to append category name)
+// Returns: 1 if the category is valid, 0 ot
 int checkCategory(int category, char *cata) {
     const char *categories[] = {"Food", "Entertainment", "Bills", "Travel", "Others"};
     int valid = 0;
