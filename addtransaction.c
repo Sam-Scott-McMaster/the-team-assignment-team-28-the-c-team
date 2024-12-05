@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "transaction_helpers.h"
 #include "users.h"
 
 
-void addTransaction(char* userName) {
+void addTransaction(char* userName, double* bal) {
     printf("Enter transaction date (YYYY-MM-DD): ");
     char date[11];
     scanf("%10s", date);
@@ -31,7 +32,7 @@ void addTransaction(char* userName) {
 
     printf("Choose a category: 1) Food 2) Entertainment 3) Bills 4) Other: ");
     int category;
-    char cata[100];
+    char cata[100] = "";
     if (scanf("%d", &category) != 1 || !checkCategory(category, cata)) {
         printf("Invalid category. Please try again.\n");
         return;
@@ -42,4 +43,6 @@ void addTransaction(char* userName) {
     snprintf(transFinal, sizeof(transFinal), "%s %s %.2f %s", date, name, cost, cata);
 
     writeTransaction(userName, transFinal);
+
+    subBalance(userName, bal, cost);
 }

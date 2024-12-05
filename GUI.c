@@ -1,11 +1,18 @@
+/* (Muhammad Talha Atif), (atifm8), (December 5, 2024)
+*
+* File contains all terminal output menus for user
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "GUI.h"
 
-#define HEIGHT 20
+//Width of terminal "GUI" 
 #define WIDTH 41
 
+/* welcome
+* prints out welcome menu, prompting user for sign-in
+*/
 void welcome() {
     printf("\n\n");
     makeTop();
@@ -24,19 +31,25 @@ void welcome() {
     makeBase();
 }
 
-void homePage(char* user, long int balance) {
+/* homePage
+* accepts current username and user's account balance
+* Greets user and displays balance, displaying message
+* if balance isn't set yet
+* allows access to transactions and budget menus
+*/
+void homePage(char* user, double* balance) {
     printf("\n\n");
     makeTop();
     makeSides(3);
     printText("Nice to see you");
     printText(user);
     makeSides(1);
-    if (balance != -1) {
+    if (*balance != -1) { //If balance isn't initial value, prints balance
         char bal[20];
-        snprintf(bal,sizeof(bal),"$%ld",balance);
+        snprintf(bal,sizeof(bal),"$%.2f",*balance);
         printText(bal);   
     }
-    else {
+    else { //Otherwise asks user to add their balance
         printText("Please add your balance in");
         printText("The transaction window!");
     }
@@ -49,6 +62,11 @@ void homePage(char* user, long int balance) {
     makeSides(1);
     makeBase();
 }
+
+/* transactionMenu
+* Allows user to do various actions with their transactions
+* or setting their balance
+*/
 
 void transactionMenu(char* user) {
     makeTop();
@@ -68,6 +86,10 @@ void transactionMenu(char* user) {
     makeBase();
 }
 
+/* budgetMenu
+* menu to allow user to add or view their budget
+*/
+
 void budgetMenu(char* user) {
     makeTop();
     makeSides(4);
@@ -84,6 +106,10 @@ void budgetMenu(char* user) {
     makeBase();
 }
 
+/* makeSides
+* accepts int of height
+* prints sides using | for terminal GUI
+*/
 
 void makeSides(int h) {
     for (int i = 0; i < h; i++) {
@@ -91,6 +117,9 @@ void makeSides(int h) {
     }
 }
 
+/* makeTop
+* uses width to make the top of GUI
+*/
 void makeTop() {
     for (int i = 0; i < WIDTH; i++) {
         printf("_");
@@ -98,6 +127,9 @@ void makeTop() {
     printf("\n");
 }
 
+/* makeBase
+* prints out bottom of terminal GUI
+*/
 void makeBase() {
     printf("|");
     for (int i = 0; i < WIDTH-2; i++) {
@@ -106,6 +138,10 @@ void makeBase() {
     printf("|\n");
 }
 
+/* printText
+* accepts String
+* prints out string centered in GUI using string formatting
+*/
 void printText(char* text) {
     int width = WIDTH-2;
     int textLen = strlen(text);

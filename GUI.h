@@ -1,5 +1,5 @@
 void welcome();
-void homePage(char* user, long int balance);
+void homePage(char* user, double* balance);
 void transactionMenu(char* user);
 void budgetMenu(char* user);
 
