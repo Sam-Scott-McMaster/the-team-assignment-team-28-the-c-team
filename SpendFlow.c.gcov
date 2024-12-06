@@ -1,0 +1,66 @@
+        -:    0:Source:SpendFlow.c
+        -:    0:Graph:ctest-SpendFlow.gcno
+        -:    0:Data:ctest-SpendFlow.gcda
+        -:    0:Runs:1
+        -:    1:/* (Muhammad Talha Atif), (atifm8), (December 5, 2024)
+        -:    2:*
+        -:    3:* Main method for SpendFlow application, main app loop is located here
+        -:    4:*/
+        -:    5:#include <stdlib.h>
+        -:    6:#include <stdio.h>
+        -:    7:#include <string.h>
+        -:    8:#include "GUI.h"
+        -:    9:#include "GUI_inputs.h"
+        -:   10:#include "users.h"
+        -:   11:
+        -:   12:/* help
+        -:   13:*
+        -:   14:* prints help flag for SpendFlow
+        -:   15:*/
+    #####:   16:void help() {
+    #####:   17:    printf("SpendFlow helps users track their expenses and budget effectively.\n");
+    #####:   18:    printf("Users can input financial transactions, categorize them\n");
+    #####:   19:    printf("(e.g., food, entertainment, bills), and set spending limits for specific categories.\n");
+    #####:   20:    printf("Options include: --help to display this guide\n");
+    #####:   21:    printf("\t\t   add a new transaction\n");
+    #####:   22:    printf("\t\t   view to see all budgets\n");
+    #####:   23:    printf("\t\t   set-budget to establish category budgets\n");
+    #####:   24:    printf("\t\t   exit to quit the app.\n");
+    #####:   25:}
+        -:   26:
+        -:   27:/* main
+        -:   28:*
+        -:   29:* accepts arguments to check for --help flag
+        -:   30:* returns EXIT_SUCCESS
+        -:   31:* Stores currently logged in user and their balance
+        -:   32:* keeps running until the user exits the program in 
+        -:   33:* one of the methods called from main 
+        -:   34:* (user must select the exit option when prompted)
+        -:   35:*/
+        1:   36:int main(int argc, char* argv[]) {
+        1:   37:    if (argc > 1) { 
+        -:   38:        //Checks if argument --help is given from user
+    #####:   39:        if (strcmp(argv[1], "--help") == 0 ) {
+    #####:   40:            help();
+    #####:   41:            exit(0);
+        -:   42:        }
+        -:   43:    }
+        -:   44:
+        -:   45:    //currentUser, updated by other methods
+        1:   46:    char currentUser[200] = "";
+        -:   47:    //accountBalance for current user, set to -1 initially
+        -:   48:    double accountBalance;
+        -:   49:    
+        -:   50:    //Prints welcome menu in terminal
+        1:   51:    welcome();
+        -:   52:    //Lets user sign in or up, updating currentUser name
+        1:   53:    signIn_or_Up(currentUser);
+        -:   54:    while (1) {
+        1:   55:        printf("Made it to true\n");
+        1:   56:        returnBalance(currentUser,&accountBalance);
+        -:   57:        //Continues prompting user for next action until they exit
+        1:   58:        action(currentUser,&accountBalance);
+        -:   59:    }
+        -:   60:    //Exits
+        -:   61:    return EXIT_SUCCESS;
+        -:   62:}
