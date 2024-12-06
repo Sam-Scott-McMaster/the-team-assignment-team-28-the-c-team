@@ -1,13 +1,6 @@
 Sorted Transactions
 --------------------
-<<<<<<< HEAD
-1111-11-11 e 2.00 Entertainment
-1111-11-11 t 1.00 Food
-1111-11-11 t 1.00 Food
-2020-11-11 Test 20.00 Bills
-=======
 1111-11-11 E 2.00 Bills
 1111-11-11 E 2.00 Entertainment
 1111-11-11 E 2.00 Other
 1111-11-11 T 1.00 Food
->>>>>>> 0078d1e623a66221733edd5b8e15c182c00494dd

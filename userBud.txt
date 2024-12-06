@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 Income: 2000.00 | Needs: 20.00 | Disposable Income: 1980.00 | Suggested Savings: 396.00
-=======
-Income: 10.00 | Needs: 3.00 | Disposable Income: 7.00 | Suggested Savings: 1.40
->>>>>>> 0078d1e623a66221733edd5b8e15c182c00494dd
