@@ -32,18 +32,16 @@ void action(char* user, double* balance) {
     while(1) { 
         inputCheck = scanf("%d", &input); //Takes input
         //Checks if input is a valid options
-        if (inputCheck && input < 4 && input > 0 || input == 1738) {
+        if (inputCheck && input < 4 && input > 0) {
             if (input == 1) {
                 loading();
                 transactionMenu(user);
                 transaction(user,balance);
-                return;
             }
             else if (input == 2) {
                 loading();
                 budgetMenu(user);
                 budget(user,balance);
-                return;
             }
             else if (input == 3) {
                 exit(0);
