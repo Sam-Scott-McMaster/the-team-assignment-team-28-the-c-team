@@ -80,6 +80,7 @@ test './ctest' 'testCase1.txt' 'empty.txt' 'empty.txt'
 test './ctest' 'testCase2.txt' 'empty.txt' 'empty.txt'
 test './ctest' 'testCase3.txt' 'empty.txt' 'empty.txt'
 test './ctest' 'testCase4.txt' 'empty.txt' 'empty.txt'
+test './ctest' 'testCase5.txt' 'empty.txt' 'empty.txt'
 test './ctest --help' 'empty.txt' 'empty.txt' 'empty.txt'
 
 
