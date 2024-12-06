@@ -77,7 +77,10 @@ test() {
 
 
 test './ctest' 'testCase1.txt' 'empty.txt' 'empty.txt'
+test './ctest' 'testCase2.txt' 'empty.txt' 'empty.txt'
+test './ctest' 'testCase4.txt' 'empty.txt' 'empty.txt'
 test './ctest --help' 'empty.txt' 'empty.txt' 'empty.txt'
+
 
 # clean up
 rm test_err.txt test_out.txt
