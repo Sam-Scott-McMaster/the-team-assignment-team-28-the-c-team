@@ -1,7 +1,3 @@
 Sorted Transactions
 --------------------
-<<<<<<< HEAD
-2003-03-12 yo 2.00 Food
-=======
-2024-12-04 Laptop 1000.00 Other
->>>>>>> ddb95419ff7c388f20297ddd646fd82d20aafff5
+2024-11-11 t 1.00 Food
