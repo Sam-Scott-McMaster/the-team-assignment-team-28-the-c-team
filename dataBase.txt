@@ -1,9 +1,0 @@
-
-Username: t
-Password: t
-BALANCE:
--1
-TRANSACTIONS:
-
-BUDGET:
-
