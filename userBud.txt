@@ -1,1 +1,1 @@
-Income: 12.00 | Needs: 1.00 | Disposable Income: 11.00 | Suggested Savings: 2.20
+Income: 10.00 | Needs: 3.00 | Disposable Income: 7.00 | Suggested Savings: 1.40
