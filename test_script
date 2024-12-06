@@ -76,6 +76,8 @@ test() {
 }
 
 
+test './SpendFlow' 'testCase1.txt' 'empty.txt' 'empty.txt'
+
 # clean up
 rm test_err.txt test_out.txt
 

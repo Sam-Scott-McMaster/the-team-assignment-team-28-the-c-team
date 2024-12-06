@@ -52,6 +52,7 @@ int main(int argc, char* argv[]) {
     //Lets user sign in or up, updating currentUser name
     signIn_or_Up(currentUser);
     while (1) {
+        printf("Made it to true\n");
         returnBalance(currentUser,&accountBalance);
         //Continues prompting user for next action until they exit
         action(currentUser,&accountBalance);
