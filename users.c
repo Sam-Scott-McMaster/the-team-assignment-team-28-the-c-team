@@ -230,6 +230,7 @@ void returnBalance(char *signedInUser, double *balance)
             {
                 *balance = atof(charline);
                 fclose(fileOpen);
+                break;
             }
         }
     }
