@@ -56,14 +56,7 @@ void sortHistory(char* inputFile, char* outputFile) {
 
     //Sorted lines to ouptut file
     FILE* outFile = fopen(outputFile, "w");
-    if (!outFile) {
-        perror("Error opening output file");
-        for (size_t i = 0; i < lineCount; i++) {
-            free(lines[i]);
-        }
-        free(lines);
-        return;
-    }
+    
     fprintf(outFile, "Sorted Transactions\n");
     fprintf(outFile, "--------------------\n");
 
@@ -82,10 +75,6 @@ void sortHistory(char* inputFile, char* outputFile) {
 // Reads the file line by line and prints each line to the terminal
 void printFileToTerminal(const char* filename) {
     FILE* file = fopen(filename, "r");
-    if (!file) {
-        perror("Error opening file to print");
-        return;
-    }
 
     char buffer[256];
     while (fgets(buffer, sizeof(buffer), file)) {
