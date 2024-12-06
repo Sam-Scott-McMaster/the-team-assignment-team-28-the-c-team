@@ -30,7 +30,7 @@ jobs:
         run: ./test_script > test_results.txt
 
       - name: Generate Coverage Reports
-        run: Run gcov SpendFlow.c; gcov GUI.c; gcov GUI_inputs.c; gcov users.c; gcov budget_calculation.c; transaction_helpers.c; gcov sortHistory.c; gcov addtransaction.c
+        run: gcov SpendFlow.c; gcov GUI.c; gcov GUI_inputs.c; gcov users.c; gcov budget_calculation.c; transaction_helpers.c; gcov sortHistory.c; gcov addtransaction.c
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
