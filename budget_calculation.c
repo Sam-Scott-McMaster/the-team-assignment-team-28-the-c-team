@@ -61,4 +61,5 @@ void addBudget(char *user) {
     //Save the budget data to the file using the writeBudget function
     writeBudget(user, budget);
     printf("Budget added successfully!\n");
+    return;
 }

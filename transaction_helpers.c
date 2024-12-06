@@ -40,10 +40,6 @@ char *addDate() {
  * Returns if valid, otherwise prints an error message
  */
 int checkName(const char *name) {
-    if (strlen(name) == 0) {
-        printf("Error: Name cannot be empty.\n");
-        return 0;
-    }
     return 1;
 }
 

@@ -75,9 +75,11 @@ void budget(char* user,double* balance) {
         if (inputCheck && input < 5 && input > 0) {
             if (input == 1) {
                 addBudget(user);
+                action(user,balance);
             }
             else if (input == 2) {
                 viewBudget(user);
+                action(user,balance);
             }
             else if (input == 3) {
                 action(user,balance);
