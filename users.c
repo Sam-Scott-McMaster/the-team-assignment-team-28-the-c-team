@@ -22,12 +22,6 @@ void checkUser(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
 
-    if (fileOpen == NULL)
-    {
-        printf("Error occurred while opening the file!\n");
-        exit(1);
-    }
-
     char userName[200];
     char password[200];
     char charline[1024];      // Holds line content
@@ -384,48 +378,6 @@ void writeBudget(char *signedInUser, char *Budget)
     fclose(fileOpen);
 
     printf("Budget updated successfully for user '%s'.\n", signedInUser);
-}
-
-/* allTrans
- * This function appends all the transaction history to a new file for use in other areas of the program. It works the same as the other functions,
- * finding the users  via signedInUser and then going down to Transactions to copy the content over. Returns Char* containg file name of transations
- * for that user.
- */
-
-char *allTrans(char *signedInUser)
-{
-    FILE *fileOpen = fopen("dataBase.txt", "r+");
-    FILE *transOpen = fopen("userTrans.txt", "w+");
-    char charline[1024];
-
-    while (fgets(charline, sizeof(charline), fileOpen))
-    {
-        if (strncmp(charline, "Username: ", 10) == 0 && strcmp(charline + 10, signedInUser) == 0)
-        {
-            break;
-        }
-    }
-
-    while (fgets(charline, sizeof(charline), fileOpen))
-    {
-        if (strncmp(charline, "TRANSACTIONS:\n", 14) == 0)
-        {
-            break;
-        }
-    }
-
-    while (fgets(charline, sizeof(charline), fileOpen))
-    {
-        if (strncmp(charline, "BUDGET:\n", 8) == 0 || strncmp(charline, "Username: ", 10) == 0)
-        {
-            break;
-        }
-        fputs(charline, transOpen);
-    }
-    fclose(fileOpen);
-    fclose(transOpen);
-
-    return "userTrans.txt";
 }
 
 /* allBud
