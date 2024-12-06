@@ -245,13 +245,6 @@ void addUser(char *signedInUser)
 {
     FILE *fileOpen = fopen("dataBase.txt", "r+");
 
-    if (fileOpen == NULL)
-    {
-        printf("Error Occurred While creating a "
-               "file !");
-        exit(1);
-    }
-
     char userName[200];
     char password[200];
     char charline[1024];
