@@ -12,19 +12,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Clean Previous Files
-        run: rm -f *.gcno *.gcda SpendFlow ctest *.gcov
-
-      - name: Verify Test Files
-        run: |
-          if [ ! -f tests.c ]; then
-            echo "Error: tests.c not found!"
-            exit 1
-          fi
+        run: rm -f *.gcno *.gcda SpendFlow
 
       - name: Build SpendFlow Executable
-        run: |
-          gcc -o SpendFlow SpendFlow.c GUI.c GUI_inputs.c users.c \
-            budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c
+        run: gcc SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c -o SpendFlow
 
       - name: Upload SpendFlow Executable
         uses: actions/upload-artifact@v4
@@ -32,25 +23,22 @@ jobs:
           name: SpendFlow
           path: ./SpendFlow
 
-      - name: Build Test Executable with Coverage
-        run: |
-          gcc -fprofile-arcs -ftest-coverage -o ctest tests.c SpendFlow.c GUI.c \
-            GUI_inputs.c users.c budget_calculation.c transaction_helpers.c \
-            sortHistory.c addtransaction.c
+      - name: Build Tests with Coverage
+        run: gcc -o ctest --coverage SpendFlow.c GUI.c GUI_inputs.c users.c budget_calculation.c transaction_helpers.c sortHistory.c addtransaction.c
 
       - name: Run Tests
-        run: ./ctest > test_results.txt
+        run: ./test_script > test_results.txt
 
       - name: Generate Coverage Reports
         run: |
-          gcov SpendFlow.c || echo "Failed to process SpendFlow.c"
-          gcov GUI.c || echo "Failed to process GUI.c"
-          gcov GUI_inputs.c || echo "Failed to process GUI_inputs.c"
-          gcov users.c || echo "Failed to process users.c"
-          gcov budget_calculation.c || echo "Failed to process budget_calculation.c"
-          gcov transaction_helpers.c || echo "Failed to process transaction_helpers.c"
-          gcov sortHistory.c || echo "Failed to process sortHistory.c"
-          gcov addtransaction.c || echo "Failed to process addtransaction.c"
+          gcov -v SpendFlow.c || echo "Failed to process SpendFlow.c"
+          gcov -v GUI.c || echo "Failed to process GUI.c"
+          gcov -v GUI_inputs.c || echo "Failed to process GUI_inputs.c"
+          gcov -v users.c || echo "Failed to process users.c"
+          gcov -v budget_calculation.c || echo "Failed to process budget_calculation.c"
+          gcov -v transaction_helpers.c || echo "Failed to process transaction_helpers.c"
+          gcov -v sortHistory.c || echo "Failed to process sortHistory.c"
+          gcov -v addtransaction.c || echo "Failed to process addtransaction.c"
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
@@ -71,4 +59,3 @@ jobs:
             transaction_helpers.c.gcov
             sortHistory.c.gcov
             addtransaction.c.gcov
-
